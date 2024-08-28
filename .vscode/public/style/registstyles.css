@@ -1,0 +1,130 @@
+﻿body, html {
+    margin: 0;
+    height: 100%;
+    font-family: "Verdana", sans-serif;
+    background-image: url(../img/bicucle.svg);
+    background-size: cover;
+}
+
+.container {
+    padding-top: 60px;
+}
+
+.outer-rectangle {
+    margin: auto;
+    position: relative;
+    width: 551px;
+    background-color: #DBE6D8;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 38px;
+    padding-bottom: 46px;
+}
+
+.rectangle {
+    margin: auto;
+    width: 480px;
+    background-color: #EFF0EB;
+    border-radius: 55px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.main{
+    display: flex;
+    flex-direction: row;
+}
+.picture-container {
+    display: flex;
+    margin: 0px 60px 0px 41px;
+    flex-direction: column;
+}
+.picture {
+    width: 152px;
+    height: 152px;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    background-size: cover;
+}
+.title {
+    padding: 29px 27px 40px 33px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    text-align: center;
+    color: #426151;
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    margin: auto;
+    width: 180px;
+    height: 40px;
+    background-color: #DBE6D8;
+    border-radius: 15px;
+    border: 2px solid #426151;
+    margin-bottom: 22px;
+    align-items: center;
+    display: flex;
+    color: #426151;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: inherit;
+    padding-left: 16px;
+}
+
+.label1,
+.button-reg {
+    text-align: center;
+    color: #426151;
+    display: block;
+    margin: auto;
+    text-decoration: none;
+}
+
+.label1 {
+    font-size: 16px;
+    border: 0px;
+    background: none;
+}
+
+    .label1:hover {
+        text-decoration: underline;
+    }
+
+.label2 {
+    color: #ab0417;
+    margin-top: 12px;
+    text-align: center;
+    padding: 10px 6px 10px 6px;
+    font-size: 16px;
+    border: 1px solid #ab0417;
+    border-radius: 5px;
+}
+
+.under-rectangle {
+    margin: auto;
+    display: grid;
+}
+
+.button-reg {
+    font-size: 23px;
+    font-weight: 400;
+    border: 2px solid #426151;
+    border-radius: 15px;
+    padding: 21px 61px 20px 61px;
+    margin-top: 44px;
+    background-color: #DBE6D8;
+}

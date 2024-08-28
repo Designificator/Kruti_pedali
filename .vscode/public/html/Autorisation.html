@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заголовок страницы</title>
+    <link rel="stylesheet" type="text/css" href="style/autostyle.css">
+
+</head>
+<body>
+    <div class="container">
+    <div class="outer-rectangle">
+            <div class="rectangle">
+                <span class="title">
+                    <img src="../img/icon.svg" width="64px", height="64px">
+                    <div class="text">КРУТИ ПЕДАЛИ</div>
+                </span>
+                <form name="signup">
+                    <input class="input" type="text" id="email" name="email" placeholder="E-mail" />
+                    <input class="input" type="password" id="password" name="password" placeholder="Пароль" />
+                </form>
+                <a class="label1" href="@">Забыли пароль?</a>
+            </div>
+            <div class="under-rectangle">
+                <a onclick="loginUser()" class="button-autor" href="Main.html">Войти</a>
+                <a class="button-reg" href="Regist.html">Регистрация</a>
+                <script type="text/javascript" charset="utf-8">
+        var emailArray = [];
+        function loginUser() {
+            var email = document.getElementById('email').value;
+            emailArray.push(email);
+            alert('You have now stored your email address');
+            console.log(emailArray[0]);
+            return false;
+        }
+    </script>
+            </div>
+    </div>
+    </div>
+</body>
+</html>

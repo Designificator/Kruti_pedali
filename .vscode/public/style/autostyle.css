@@ -1,0 +1,95 @@
+﻿body, html {
+    margin: 0;
+    height: 100%;
+    font-family: "Verdana", sans-serif;
+    background-image: url(../img/bicucle.svg);
+    background-size: cover;
+}
+.container {
+    padding-top: 40px;
+}
+.outer-rectangle {
+    margin: auto;
+    position: relative;
+    width: 374px;
+    height: 619px;
+    background-color: #DBE6D8;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.rectangle {
+    margin: auto;
+    width: 303px;
+    background-color: #EFF0EB;
+    border-radius: 55px;
+    padding-bottom: 50px;
+}
+.title{
+    padding: 29px 27px 40px 33px;
+    display: flex;
+    align-items: center;
+}
+.text {
+    text-align: center;
+    color: #426151;
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.input {
+    margin: auto;
+    width: 217px;
+    height: 49px;
+    background-color: #DBE6D8;
+    border-radius: 15px;
+    border: 2px solid #426151;
+    margin-bottom: 31px;
+    align-items: center;
+    display: flex;
+    color: #426151;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: inherit;
+    padding-left: 31px;
+}
+
+.label1,
+.button-autor,
+.button-reg {
+    text-align: center;
+    color: #426151;
+    display: block;
+    margin: auto;
+    text-decoration: none;
+}
+
+.label1 {
+    font-size: 20px;
+
+}
+    .label1:hover {
+        text-decoration: underline;
+    }
+
+.under-rectangle {
+    margin: auto;
+    display: grid;
+}
+
+.button-autor {
+    font-size: 23px;
+    font-weight: 400;
+    border: 2px solid #426151;
+    border-radius: 15px;
+    padding: 21px 61px 20px 61px;
+}
+
+.button-reg {
+    padding-top: 24px;
+    font-size: 20px;
+    font-weight: 400;
+}
+

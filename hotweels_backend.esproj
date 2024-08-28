@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.271090-alpha">
+  <PropertyGroup>
+    <StartupCommand>npm start</StartupCommand>
+    <!-- Allows the build (or compile) script located on package.json to run on Build -->
+    <ShouldRunBuildScript>false</ShouldRunBuildScript>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include=".vscode\public\html\Mainreged.html" />
+    <None Include=".vscode\public\img\0lslz48qa80x7xarnt4ivlvtxnivvpmu.png" />
+    <None Include=".vscode\public\img\anothercycle.png" />
+    <None Include=".vscode\public\html\Autorisation.html" />
+    <None Include=".vscode\public\script\imgSelect.js" />
+    <None Include=".vscode\public\script\login.js" />
+    <None Include=".vscode\public\style\autostyle.css" />
+    <None Include=".vscode\public\img\back.svg" />
+    <None Include=".vscode\public\img\bicucle.svg" />
+    <None Include=".vscode\public\script\CommentMaker.js" />
+    <None Include=".vscode\public\img\empty_star.png" />
+    <None Include=".vscode\public\img\greenstar.svg" />
+    <None Include=".vscode\public\img\hills.svg" />
+    <None Include=".vscode\public\img\icon.svg" />
+    <None Include=".vscode\public\html\Main.html" />
+    <None Include=".vscode\public\img\maxresdefault.jpg" />
+    <None Include=".vscode\public\img\Rectangle.png" />
+    <None Include=".vscode\public\html\Regist.html" />
+    <None Include=".vscode\public\style\registstyles.css" />
+    <None Include=".vscode\public\img\rightarrow.svg" />
+    <None Include=".vscode\public\html\Routs.html" />
+    <None Include=".vscode\public\style\routstyles.css" />
+    <None Include=".vscode\public\img\rout_description_pic.svg" />
+    <None Include=".vscode\public\img\savebutton.svg" />
+    <None Include=".vscode\public\img\star.png" />
+    <None Include=".vscode\public\style\styles.css" />
+    <None Include=".vscode\public\img\torturetool.svg" />
+    <None Include=".vscode\public\img\Vector 2.png" />
+    <None Include=".vscode\src\app.js" />
+    <None Include=".vscode\src\config\db.js" />
+    <None Include=".vscode\src\controllers\userController.js" />
+    <None Include=".vscode\src\logger.js" />
+    <None Include=".vscode\src\models\userModel.js" />
+    <None Include=".vscode\src\routes\index.js" />
+  </ItemGroup>
+</Project>
