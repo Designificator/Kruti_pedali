@@ -5,10 +5,13 @@
     <ShouldRunBuildScript>false</ShouldRunBuildScript>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove=".gitattributes" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include=".vscode\public\html\Mainreged.html" />
     <None Include=".vscode\public\img\0lslz48qa80x7xarnt4ivlvtxnivvpmu.png" />
     <None Include=".vscode\public\img\anothercycle.png" />
-    <None Include=".vscode\public\html\Autorisation.html" />
+    <None Include=".vscode\public\html\login.html" />
     <None Include=".vscode\public\script\imgSelect.js" />
     <None Include=".vscode\public\script\login.js" />
     <None Include=".vscode\public\style\autostyle.css" />

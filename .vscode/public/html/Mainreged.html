@@ -3,7 +3,7 @@
 <html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="style/styles.css" type="text/css">
+    <link rel="stylesheet" href="../style/styles.css" type="text/css">
     <title>Крути педали</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,13 +18,11 @@
                         <img src="../img/icon.svg">
                     </div>
                     <div class="options">
-                        <a class="opt-item" href="Main.html" style="color: #C3D1F4;">ГЛАВНАЯ</a>
+                        <a class="opt-item" href="Main" style="color: #C3D1F4;">ГЛАВНАЯ</a>
                         <a class="opt-item" href="@">ПОДДЕРЖКА</a>
-                        <a class="opt-item" href="Routs.html">МАРШРУТЫ</a>
+                        <a class="opt-item" href="Routs">МАРШРУТЫ</a>
+                        <a class="opt-item" href="@">ЛИЧНЫЙ КАБИНЕТ</a>
                     </div>
-                    <!--<div class="aut">
-        <a class="aut-button" href="C:\Users\Designificator\source\repos\hotweels\Autorisation.html">АВТОРИЗАЦИЯ</a>
-    </div>-->
                 </div>
                 <div class="main">
                     <div class="main-bg"></div>
@@ -87,8 +85,8 @@
                     <div class="stars-item" id="star5"><img src="../img/empty_star.png"></div>
                 </div>
                 <div class="comment-form">
-                    <input type="text" id="comment-item-name" class="comment-input" placeholder="Имя">
-                    <input type="text" id="comment-item-text" class="comment-input" placeholder="Комментарий">
+                    <h3 id="comment-item-name"></h3>
+                    <textarea id="comment-item-text" class="comment-input" maxlength="1000" placeholder="Комментарий"></textarea>
                     <!-- Submit button  -->
                     <button id="submit" class="submit-button">Отправить</button>
                 </div>

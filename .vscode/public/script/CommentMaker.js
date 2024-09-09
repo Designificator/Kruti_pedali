@@ -7,7 +7,7 @@ class Comment {
     create(commentItemText, commentItemName, commentItemStars) {
         // Get input value
         const commentText = commentItemText.value;
-        const commentName = commentItemName.value;
+        const commentName = commentItemName.innerText;
 
         // Create comment DOM element
         const newCommentItem = document.createElement('div');
@@ -123,7 +123,6 @@ function RefreshStars() {
     }
 }
 
-//Добавление комента из формы
 function AddNewCom() {
     const newComment = new Comment(commentItemText, commentItemName, commentItemStars);
     commentList.insertAdjacentElement('afterbegin', newComment.commentElement);
@@ -132,10 +131,32 @@ function AddNewCom() {
     commentItemText.value = '';
     commentItemName.value = '';
 }
-
+const commentItemName = document.getElementById('comment-item-name');
+function GetUsername() {
+    var username = '';
+    fetch('http://localhost:3002/api/users').then((response) => {
+        if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+            return;
+        }
+        else {
+            return response.text();
+        }
+    })
+        .then(responseText => {
+            username = responseText;
+            console.log("got name: " + username);
+            commentItemName.innerText = username;
+        })
+        .catch((err) => {
+            console.log('Fetch Error :-S', err);
+        });
+    return username;
+}
+GetUsername();
 const commentItemStars = document.getElementById('stars');
 const commentItemText = document.getElementById('comment-item-text');
-const commentItemName = document.getElementById('comment-item-name');
 const submitBtn = document.getElementById('submit');
 const commentList = document.getElementById('comment-list');
 let x = 1;

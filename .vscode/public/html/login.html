@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Заголовок страницы</title>
-    <link rel="stylesheet" type="text/css" href="style/autostyle.css">
+    <link rel="stylesheet" type="text/css" href="../style/autostyle.css">
 
 </head>
 <body>
@@ -21,16 +21,14 @@
                 <a class="label1" href="@">Забыли пароль?</a>
             </div>
             <div class="under-rectangle">
-                <a onclick="loginUser()" class="button-autor" href="Main.html">Войти</a>
-                <a class="button-reg" href="Regist.html">Регистрация</a>
+                <a onclick="loginUser()" class="button-autor" href="Main">Войти</a>
+                <a class="button-reg" href="regist">Регистрация</a>
                 <script type="text/javascript" charset="utf-8">
         var emailArray = [];
         function loginUser() {
             var email = document.getElementById('email').value;
-            emailArray.push(email);
-            alert('You have now stored your email address');
-            console.log(emailArray[0]);
-            return false;
+            var password = document.getElementById('passwprd').value;
+            
         }
     </script>
             </div>

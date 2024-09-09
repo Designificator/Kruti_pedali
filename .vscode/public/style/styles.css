@@ -23,7 +23,7 @@ body {
     align-items: center;
 }
 .options{
-    margin-left: 781px;
+    margin-left: auto;
 }
 
 .opt-item {
@@ -129,12 +129,15 @@ body {
     padding-top: 278px;
 }
 .main-text {
-    color: #E3DED1;
+    color: #426151;
     font-weight: 100;
     font-size: 18px;
-    border-left: solid 3px #E3DED1;
     padding: 39px;
     margin-left: 39px;
+    text-decoration: none;
+}
+.main-text:hover{
+    text-decoration: underline;
 }
 .section {
     padding-top: 150px;
@@ -158,13 +161,14 @@ body {
     position: relative;
     height: 12.85vw;
     width: 28.75vw;
-    background-color: #82A585;
+    background-color: #426151;
     border: solid 1px #DAE5D7;
+    font-size: 22px;
+    color: #EFF0EB;
+    text-align: center;
+    padding: 15px 15px 0px 15px;
 }
-.card2-img{
-    display: inline-block;
-    resize: both; 
-}
+
 .comment-container {
     background-color: #DCE7D9;
     padding: 36px 0 36px 39px;
@@ -248,15 +252,20 @@ h3 {
 }
 
 .comment-form{
-    width: 200px;
+    width: 600px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .comment-input {
-    margin: 10px 0 10px 15px;
+    margin: 10px 0 10px 0px;
     font-size: 16px;
     border: 2px solid #426151;
     border-radius: 10px;
-    padding: 10px 30px 5px 30px;
+    padding: 10px 10px 100px 30px;
+    display: flex;
+    resize: none;
 }
 
 .submit-button {
@@ -264,7 +273,7 @@ h3 {
     border-radius: 15px;
     border: 2px solid #426151;
     margin-bottom: 33px;
-    margin-left: 15px;
+    margin-left: auto;
     align-items: center;
     color: #426151;
     font-size: 16px;

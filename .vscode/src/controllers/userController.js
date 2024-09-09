@@ -2,11 +2,14 @@ const pool = require('../config/db');
 
 exports.getUsers = async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM users');
-        res.status(200).json(result.rows);
+        //const result = await pool.query('SELECT * FROM users');
+        res.status(200);
+        res.set('text');
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
+    console.log("sent name: " + req.session.username);
+    res.send(req.session.username);
 };
 
 exports.createUser = async (req, res, next) => {
@@ -16,7 +19,10 @@ exports.createUser = async (req, res, next) => {
         res.status(201);
     } catch (err) {
         res.status(500).json({ error: err.message });
+        next();
     }
+    req.session.authorized = true;
+    req.session.username = name;
     res.set('text').send('http://localhost:3002/Mainreged');
 };
 
