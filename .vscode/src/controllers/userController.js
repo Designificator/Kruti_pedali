@@ -1,8 +1,28 @@
 const pool = require('../config/db');
 
 exports.getUsers = async (req, res) => {
+    const { email, password } = req.body;
+    console.log('password and email ', email, password);
+    pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password], (err, result) => {
+        if (err) {
+            console.error("Error in SQL query:", err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (result.rows != null) {
+            console.log("User found");
+            res.status(200);
+            req.session.authorized = true;
+            req.session.username = result.rows[0].name;
+            res.set('text').send('http://localhost:3002/Mainreged');
+        } else {
+            console.log("User not found");
+            res.status(401).json({ error: 'Invalid credentials' });
+        }
+    });
+};
+
+exports.getSessionData = async (req, res) => {
     try {
-        //const result = await pool.query('SELECT * FROM users');
         res.status(200);
         res.set('text');
     } catch (err) {
@@ -10,20 +30,20 @@ exports.getUsers = async (req, res) => {
     }
     console.log("sent name: " + req.session.username);
     res.send(req.session.username);
-};
+}
 
 exports.createUser = async (req, res, next) => {
     const { name, email, password } = req.body;
     try {
         const result = await pool.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *', [name, email, password]);
         res.status(201);
+        req.session.authorized = true;
+        req.session.username = name;
+        res.set('text').send('http://localhost:3002/Mainreged');
     } catch (err) {
         res.status(500).json({ error: err.message });
         next();
     }
-    req.session.authorized = true;
-    req.session.username = name;
-    res.set('text').send('http://localhost:3002/Mainreged');
 };
 
 exports.updateUser = async (req, res) => {

@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-    <div class="outer-rectangle">
+    <div class="outer-rectangle" id="outer-rectangle">
             <div class="rectangle">
                 <span class="title">
                     <img src="../img/icon.svg" width="64px", height="64px">
@@ -21,13 +21,64 @@
                 <a class="label1" href="@">Забыли пароль?</a>
             </div>
             <div class="under-rectangle">
-                <a onclick="loginUser()" class="button-autor" href="Main">Войти</a>
+                <button onclick="loginUser()" class="button-autor">Войти</button>
                 <a class="button-reg" href="regist">Регистрация</a>
                 <script type="text/javascript" charset="utf-8">
-        var emailArray = [];
+                    function showErr(message) {
+                        const previosMessage = document.getElementById('err-message');
+                        if (previosMessage == null) {
+                            const mainBlock = document.getElementById('outer-rectangle');
+                            const errMessageBlock = document.createElement('div');
+                            errMessageBlock.className = 'label2';
+                            errMessageBlock.innerText = message;
+                            errMessageBlock.id = 'err-message';
+                            mainBlock.insertAdjacentElement('beforeend', errMessageBlock);
+                        }
+                        else {
+                            previosMessage.innerText = message;
+                        }
+                    }
         function loginUser() {
             var email = document.getElementById('email').value;
-            var password = document.getElementById('passwprd').value;
+            var password = document.getElementById('password').value;
+            var userData = {
+                "email": email,
+                "password": password
+            };
+            fetch('http://localhost:3002/api/users/login', {
+                method: 'post',
+                headers: {
+                    "Content-type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(userData)
+            })
+                .then(
+                    function (response) {
+                        if (response.status == 401) {
+                            console.log('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            showErr("Неверно указан логин или пароль");
+                            return;
+                        }
+                        else if (response.status == 200) {
+                            return response.text();
+                        }
+                        else {
+                            console.log('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            showErr("Что-то пошло не так, повторите попытку позже");
+                            return;
+                        }
+                    }
+            ).then(responseText => {
+                if (responseText != 'undefined' && responseText != null) {
+                    window.location.href = responseText;
+                }
+            })
+                .catch(function (err) {
+                    console.log('Fetch Error :-S', err);
+                    showErr("Не удалось зарегистрироваться: страница временно недоступна");
+                });
             
         }
     </script>

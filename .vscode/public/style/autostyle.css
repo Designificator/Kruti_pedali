@@ -74,6 +74,16 @@
         text-decoration: underline;
     }
 
+.label2 {
+    color: #ab0417;
+    margin-top: 12px;
+    text-align: center;
+    padding: 10px 6px 10px 6px;
+    font-size: 16px;
+    border: 1px solid #ab0417;
+    border-radius: 5px;
+}
+
 .under-rectangle {
     margin: auto;
     display: grid;

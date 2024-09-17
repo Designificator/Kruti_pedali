@@ -106,7 +106,7 @@ app.use((err, req, res, next) => {
 
 app.get('/', (request, response) => {
     console.log(`URL: ${request.url}`);
-    response.redirect('http://localhost:3002/regist');
+    response.redirect('http://localhost:3002/Main');
 });
 
 app.use(express.static(publicDirPath));

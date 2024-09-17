@@ -139,24 +139,27 @@ body {
 .main-text:hover{
     text-decoration: underline;
 }
+
 .section {
     padding-top: 150px;
 }
+
 .rectangles-container {
     background-image: url(../img/back.svg);
     background-size: cover;
     background-repeat: no-repeat;
     padding-bottom: 400px;
+    padding-top: 340px;
+    display: flex;
+    flex-direction: row;
 }
 .rectangles {
-    margin: -114px 0px 0px -79px;
-    padding-top: 340px;
+    margin: 54px 0px 0px 264px;
+    display: flex;
+    flex-direction: column;
 }
-.rect{
-    padding-bottom: 97px;
-}
-.card2 {
-    margin: 54px -132px 55px 411px;
+.rectangles-item {
+    margin-bottom: 209px;
     display: inline-block;
     position: relative;
     height: 12.85vw;
@@ -167,6 +170,22 @@ body {
     color: #EFF0EB;
     text-align: center;
     padding: 15px 15px 0px 15px;
+}
+.rectangles-images{
+    display: flex;
+    flex-direction: column;
+    margin-left: -132px;
+}
+.pre-img img {
+    display: block;
+    vertical-align: bottom;
+    font-size: 0;
+}
+.rectangles-images-item{
+    display: flex;
+    margin-bottom: 114px;
+    border: solid 5px #426151;
+
 }
 
 .comment-container {

@@ -84,7 +84,7 @@
                                 if (response.status !== 201) {
                                     console.log('Looks like there was a problem. Status Code: ' +
                                         response.status);
-                                    showErr("Не удалось зарегистрироваться: ошибка " + response.status);
+                                    showErr("Не удалось зарегистрироваться: пользователь с таким именем уже есть");
                                     return;
                                 }
                                 else {
@@ -92,7 +92,11 @@
                                 }
                             }
                     )
-                        .then(responseText => window.location.href = responseText)
+                        .then(responseText => {
+                            if (responseText != 'undefined' && responseText != null) {
+                                window.location.href = responseText;
+                            }
+                        })
                         .catch(function (err) {
                             console.log('Fetch Error :-S', err);
                             showErr("Не удалось зарегистрироваться: страница временно недоступна");
