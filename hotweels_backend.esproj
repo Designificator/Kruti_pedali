@@ -14,6 +14,7 @@
     <None Include=".vscode\public\html\login.html" />
     <None Include=".vscode\public\script\imgSelect.js" />
     <None Include=".vscode\public\script\login.js" />
+    <None Include=".vscode\public\script\yamaps.js" />
     <None Include=".vscode\public\style\autostyle.css" />
     <None Include=".vscode\public\img\back.svg" />
     <None Include=".vscode\public\img\bicucle.svg" />
@@ -38,6 +39,7 @@
     <None Include=".vscode\public\img\Vector 2.png" />
     <None Include=".vscode\src\app.js" />
     <None Include=".vscode\src\config\db.js" />
+    <None Include=".vscode\src\controllers\comentController.js" />
     <None Include=".vscode\src\controllers\userController.js" />
     <None Include=".vscode\src\logger.js" />
     <None Include=".vscode\src\models\userModel.js" />

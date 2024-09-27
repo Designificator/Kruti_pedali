@@ -181,11 +181,11 @@ body {
     vertical-align: bottom;
     font-size: 0;
 }
-.rectangles-images-item{
+.rectangles-images-item {
     display: flex;
     margin-bottom: 114px;
     border: solid 5px #426151;
-
+    background-color: #426151;
 }
 
 .comment-container {

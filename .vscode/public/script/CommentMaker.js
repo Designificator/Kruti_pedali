@@ -1,5 +1,8 @@
 class Comment {
     commentElement;
+    username;
+    text;
+    rate;
     constructor(commentText, commentName, commentItemStars) {
         this.commentElement = this.create(commentText, commentName, commentItemStars);
     }
@@ -33,6 +36,10 @@ class Comment {
         newComment.insertAdjacentElement('afterbegin', newCommentItemStars);
         newComment.insertAdjacentElement('beforeend', newCommentItem);
 
+        this.text = commentText;
+        this.username = commentName;
+
+
         return newComment;
     }
 }
@@ -48,18 +55,6 @@ class CommentList {
     addComment(commentElement) {
         this.container.appendChild(commentElement);
     }
-/*
-    render() {
-        console.log(this.items);
-        this.items.comments.forEach((comment) => {
-            const dateToFormat = new Date(comment.date);
-            const year = dateToFormat.getFullYear();
-            const month = dateToFormat.getMonth();
-            const date = dateToFormat.getDate();
-            const finalDate = `${date}.${month + 1}.${year}`;
-
-            this.addComment(finalDate, comment.text);
-        })*/
 }
 
 /*let commentList;
@@ -85,31 +80,36 @@ const starsArray = new Array(5);
 for (var i = 0; i < 5; i++) {
     starsArray[i] = document.getElementById("star" + (i + 1).toString());
 }
-
+var rate;
 function StarsSelect1() {
     for (var j = 0; j < 1; j++) {
         starsArray[j].innerHTML = '<img src="img/star.png">';
     }
+    rate = 1;
 }
 function StarsSelect2() {
     for (var j = 0; j < 2; j++) {
         starsArray[j].innerHTML = '<img src="img/star.png">';
     }
+    rate = 2;
 }
 function StarsSelect3() {
     for (var j = 0; j < 3; j++) {
         starsArray[j].innerHTML = '<img src="img/star.png">';
     }
+    rate = 3;
 }
 function StarsSelect4() {
     for (var j = 0; j < 4; j++) {
         starsArray[j].innerHTML = '<img src="img/star.png">';
     }
+    rate = 4;
 }
 function StarsSelect5() {
     for (var j = 0; j < 5; j++) {
         starsArray[j].innerHTML = '<img src="img/star.png">';
     }
+    rate = 5;
 }
 starsArray[0].addEventListener('click', StarsSelect1);
 starsArray[1].addEventListener('click', StarsSelect2);
@@ -125,6 +125,7 @@ function RefreshStars() {
 
 function AddNewCom() {
     const newComment = new Comment(commentItemText, commentItemName, commentItemStars);
+    SendCommentToAPI(commentItemName.innerText, commentItemText.value, rate);
     commentList.insertAdjacentElement('afterbegin', newComment.commentElement);
 
     RefreshStars();
@@ -154,6 +155,36 @@ function GetUsername() {
         });
     return username;
 }
+function SendCommentToAPI(username, text, rate) {
+    const commentData = {
+        "username": username,
+        "text": text,
+        "rate": rate
+    }
+    fetch('http://localhost:3002/api/comments', {
+        method: 'post',
+        headers: {
+            "Content-type": "application/json; charset=utf-8"
+        },
+        body: JSON.stringify(commentData)
+    })
+        .then(
+            function (response) {
+                if (response.status !== 201) {
+                    console.log('Looks like there was a problem. Status Code: ' +
+                        response.status);
+                    return;
+                }
+                else {
+                    console.log('Comment is sent');
+                }
+            }
+        )
+        .catch(function (err) {
+            console.log('Fetch Error :-S', err);
+        });
+}
+
 GetUsername();
 const commentItemStars = document.getElementById('stars');
 const commentItemText = document.getElementById('comment-item-text');

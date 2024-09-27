@@ -58,6 +58,9 @@
 .map{
     padding: 25px 0px 25px 0px;
     background-color: #426151;
+    display: flex;
+    width: 100%;
+    height: 400px;
 }
 
 .title-holder {

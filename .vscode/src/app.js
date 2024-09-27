@@ -61,7 +61,7 @@ function authorizeUrls(urls) {
                         return;
                     }
                     else {
-                        res.writeHead(303, { 'Location': '/login' });
+                        res.writeHead(303, { 'Location': '/Main' });
                         res.end();
                         console.log("return_aut_fail");
                         console.log(req.session.username);
