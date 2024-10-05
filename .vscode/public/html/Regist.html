@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../style/registstyles.css">
-    <script src="script/imgSelect.js" type="text/javascript" charset="utf-8"></script>
     <title></title>
 </head>
 <body>
@@ -19,7 +18,7 @@
                     <div class="picture-container">
                         <div class="picture" id="picture">
                         </div>
-                        <button class="label1" id="add-picture" onclick="addPicture()">Добавить фото</button>
+                        <button class="label1" id="add-picture">Добавить фото</button>
                     </div>
                     <div class="form">
                         <form name="signup">
@@ -30,7 +29,10 @@
                     </div>
                 </div>
             </div>
+
             <script>
+                //const picture_style = picture.style
+
                 function showErr(message) {
                     const previosMessage = document.getElementById('err-message');
                     if (previosMessage == null) {
@@ -91,7 +93,7 @@
                                     return response.text();
                                 }
                             }
-                    )
+                        )
                         .then(responseText => {
                             if (responseText != 'undefined' && responseText != null) {
                                 window.location.href = responseText;
@@ -102,8 +104,9 @@
                             showErr("Не удалось зарегистрироваться: страница временно недоступна");
                         });
                 }
-              
+
             </script>
+            <script src="script/imgSelect.js" type="text/javascript" charset="utf-8"></script>
             <div class="under-rectangle">
                 <button onclick="login()" class="button-reg" id="button-reg">Регистрация</button>
             </div>

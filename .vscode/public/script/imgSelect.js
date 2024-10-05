@@ -1,5 +1,4 @@
 var picture = document.getElementById('picture');
-picture_style = "width: 152px; height: 152px; border-radius: 20px;";
 async function addPicture() {
     let files = await selectFile("image/*");
     picture.innerHTML = `<div class="picture" id="picture" style="background-image: url(${URL.createObjectURL(files)})"></div>`;
@@ -18,3 +17,6 @@ function selectFile(contentType) {
         input.click();
     });
 }
+
+const addPicBtn = document.getElementById('add-picture');
+addPicBtn.addEventListener('click', addPicture);

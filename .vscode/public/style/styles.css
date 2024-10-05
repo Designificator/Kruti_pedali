@@ -8,7 +8,7 @@ body {
     margin-left: 20px;
 }
 .header {
-    background-image: url(../img/bicucle.svg);
+    background-image: url(../img/main_background.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -36,20 +36,18 @@ body {
     .opt-item:hover {
         color: #C3D1F4;
     }
-.aut {
-    margin-left: 500px;
-}
-.aut-button {
-    background-color: darkgoldenrod;
+
+.login-button {
+    color: #426151;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 8px 37px 8px 37px;
+    background-color: #B6CEAE;
+    border-radius: 10px;
+    margin-right: 65px;
     text-decoration: none;
-    color: #E3DED1;
-    font-weight: 500;
-    padding: 15px 15px;
-    border-radius: 5px;
 }
-    .aut-button:hover {
-        background-color: orangered;
-    }
+
 .main {
     display: grid;
     margin-top: 312px;

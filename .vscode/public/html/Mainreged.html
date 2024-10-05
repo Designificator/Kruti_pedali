@@ -20,7 +20,7 @@
                     <div class="options">
                         <a class="opt-item" href="Main" style="color: #C3D1F4;">ГЛАВНАЯ</a>
                         <a class="opt-item" href="Routs">МАРШРУТЫ</a>
-                        <a class="opt-item" href="@">ЛИЧНЫЙ КАБИНЕТ</a>
+                        <a class="login-button" href="profile">Личный кабинет</a>
                     </div>
                 </div>
                 <div class="main">
@@ -106,14 +106,19 @@
                 <div class="advert"></div>
             </div>
         </div>
-        <script src="script/CommentMaker.js"></script>
+        <script src="../script/reqSender.js"></script>
+        <script src="../script/CommentMaker.js"></script>
+        <script>
+            com_init();
+            com_import();
+        </script>
     </section>
     <footer id="footer" class="footer">
         <div class="container">
             <div class="footer-options">
-                <a class="footer-opt-item" href="Main.html">ГЛАВНАЯ</a>
-                <a class="footer-opt-item" href="Routs.html">МАРШРУТЫ</a>
-                <a class="footer-opt-item" href="@">ОТЗЫВЫ</a>
+                <a class="footer-opt-item" href="Main">ГЛАВНАЯ</a>
+                <a class="footer-opt-item" href="Routs">МАРШРУТЫ</a>
+                <a class="footer-opt-item" href="profile">ЛИЧНЫЙ КАБИНЕТ</a>
                 <span class="footer-opt-item">Телефон: 8-800-55-35-35</span>
             </div>
         </div>

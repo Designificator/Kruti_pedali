@@ -44,6 +44,7 @@ var siteUrls = [
     , { pattern: '^/Main$', restricted: false }
     , { pattern: '^/regist$', restricted: false }
     , { pattern: '^/Routs$', restricted: false }
+    , {pattern: '^/profile$', restricted: true}
 ];
 
 function authorizeUrls(urls) {

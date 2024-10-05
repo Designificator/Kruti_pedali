@@ -22,75 +22,117 @@
                     <div class="options">
                         <a class="opt-item" href="Mainreged">ГЛАВНАЯ</a>
                         <a class="opt-item" href="Routs" style="color: #C3D1F4;">МАРШРУТЫ</a>
-                        <a class="opt-item" href="login">АВТОРИЗАЦИЯ</a>
+                        <a class="login-button" href="login">Войти</a>
                     </div>
                 </div>
         </div>
     </header>
     <section>
-    <div class="container">
-        <div class="map-buttons-line">
-            <div class="map-button">ВСЕ</div>
-            <div class="map-button">МАРШРУТЫ</div>
-            <div class="map-button">ПРОКАТ</div>
-            <div class="map-button">ПАРКОВКА</div>
-            <div class="map-button">ВЕЛОМАГАЗИН</div>
-            <div class="map-button">РЕМОНТ</div>
-            <div class="map-button">ГДЕ ПОЕСТЬ?</div>
-        </div>
-        <div class="map" id="map">
-            <!--<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8cc3678cfe704bb951bb3898e90607e6490376f255f1c82da323e2130d3e7643&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
-    -->
-        </div>
-        <div class="description">
-            <div class="description-holder">
-                <div class="title-holder">
-                    <div class="title-bg"></div>
-                    <div class="title-text">
-                    <h1 id="rout-label">МАРШРУТ "КОЧКИ ДА ЯМЫ"</h1>
-                    <h3 id="rout-address">Адрес</h3></div>
-                </div>
-                <div class="description-main">
-                <div class="first-column">
-                    <h2>Поблизости:</h2>
-                    <div class="description-options" id="description-options">
-                        <!--<div class="description-item">
-        <div class="description-item-icon"><img src="../img/torturetool.svg"></div>
-        <div class="description-item-body">
-            <div class="description-item-content">
-
-                <h3 id="description-item-text">Ремонт велосипедов "Починка"</h3><h3 id="description-item-rate">4.5</h3><img src="../img/greenstar.svg" style="vertical-align: bottom">
+        <div class="container" id="container">
+            <div class="map-buttons-line">
+                <button class="map-button" style="color: #C3D1F4">ВСЕ</button>
+                <button class="map-button">МАРШРУТЫ</button>
+                <button class="map-button">ПРОКАТ</button>
+                <button class="map-button">ПАРКОВКА</button>
+                <button class="map-button">ВЕЛОМАГАЗИН</button>
+                <button class="map-button">РЕМОНТ</button>
+                <button class="map-button">ГДЕ ПОЕСТЬ?</button>
             </div>
-            <div class="show-map-button">Показать на карте</div>
+            <div class="map" id="map">
+                <!--<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8cc3678cfe704bb951bb3898e90607e6490376f255f1c82da323e2130d3e7643&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+        -->
+            </div>
+            <!--<div class="description">
+        <div class="description-holder">
+            <div class="title-holder">
+                <div class="title-bg"></div>
+                <div class="title-text">
+                <h1 id="rout-label"></h1>
+                <h3 id="rout-address"></h3></div>
+            </div>
+            <div class="description-main">
+            <div class="first-column">
+                <h2>Поблизости:</h2>
+                <div class="description-options" id="description-options">
+                    <div class="description-item">
+    <div class="description-item-icon"><img src="../img/torturetool.svg"></div>
+    <div class="description-item-body">
+        <div class="description-item-content">
+
+            <h3 id="description-item-text">Ремонт велосипедов "Починка"</h3><h3 id="description-item-rate">4.5</h3><img src="../img/greenstar.svg" style="vertical-align: bottom">
         </div>
-        <div class="description-item-picture"><img src="../img/rout_description_pic.svg"></div>
-        </div>-->
-                    </div>
+        <div class="show-map-button">Показать на карте</div>
+    </div>
+    <div class="description-item-picture"><img src="../img/rout_description_pic.svg"></div>
+    </div>
                 </div>
-                <div class="sec-column">
-                    <div class="pic-number">4</div>
-                    <img src="../img/anothercycle.png">
-                    <div class="bottom-pannel">
-                        <div class="make-rout-button"><h3>Построить маршрут</h3></div>
-                        <div class="save-button">
-                            <img src="../img/savebutton.svg"><div>
-                                <div class="save-label"></div>
-                            </div>
+            </div>
+            <div class="sec-column">
+                <div class="pic-number">4</div>
+                <img src="../img/anothercycle.png">
+                <div class="bottom-pannel">
+                    <div class="make-rout-button"><h3>Построить маршрут</h3></div>
+                    <div class="save-button">
+                        <img src="../img/savebutton.svg"><div>
+                            <div class="save-label"></div>
                         </div>
                     </div>
                 </div>
+            </div>
+    </div>-->
         </div>
-    </div>
     </section>
     <script>
+        function initDescription() {
+            var description = document.getElementById('description');
+            if (description == null) {
+                description = document.createElement('div');
+                var container = document.getElementById('container');
+                description.innerHTML = `<div class="description" id="description">
+<div class="description-holder">
+    <div class="title-holder">
+        <div class="title-bg"></div>
+        <div class="title-text">
+        <h1 id="rout-label"></h1>
+        <h3 id="rout-address"></h3></div>
+    </div>
+    <div class="description-main">
+    <div class="first-column">
+        <h2>Поблизости:</h2>
+        <div class="description-options" id="description-options">
+                        </div>
+        </div>
+        <div class="sec-column">
+            <div class="pic-number">4</div>
+            <img src="../img/anothercycle.png">
+            <div class="bottom-pannel">
+                <div class="make-rout-button"><h3>Построить маршрут</h3></div>
+                <div class="save-button">
+                    <img src="../img/savebutton.svg"><div>
+                        <div class="save-label"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>`;
+                container.insertAdjacentElement('beforeend', description);
+}
+        }
         function makeDescriptionsItem(icon, name, rate, img) {
             var descriptionItem = document.createElement('div');
+            var finalRate;
+            if (rate != "") {
+                finalRate = `<h3 id="description-item-rate">${rate}</h3><img src="../img/greenstar.svg" style="vertical-align: bottom">`;
+            }
+            else {
+                finalRate = "";
+            }
             descriptionItem.innerHTML = `<div class="description-item">
     <div class="description-item-icon"><img src="../img/${icon}.svg"></div>
     <div class="description-item-body">
         <div class="description-item-content">
 
-            <h3 id="description-item-text">${name}</h3><h3 id="description-item-rate">${rate}</h3><img src="../img/greenstar.svg" style="vertical-align: bottom">
+            <h3 id="description-item-text">${name}</h3>${finalRate}
         </div>
         <div class="show-map-button">Показать на карте</div>
     </div>
@@ -181,6 +223,43 @@
                         strokeColor: "#ca10e5",
                         strokeWidth: 5
                     }),
+                point_Boomcoffee = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.20386262350095, 39.733251171954784]
+                    },
+                    properties: {
+                        iconCaption: "Boom кофе"
+                    }
+                }),
+                point_Channelsharing = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.20414412545804, 39.732028084644]
+                    },
+                    properties: {
+                        iconCaption: "Велопрокат"
+                    }
+                }),
+                point_sportsground = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.203902838209025, 39.732210474857]
+                    },
+                    properties: {
+                        iconCaption: "Спортплощадка"
+                    }
+                }),
+                point_Channelrestzone = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.198378519798844, 39.73808853591305]
+                    },
+                    properties: {
+                        iconCaption: "Зона отдыха"
+                    }
+                }),
+
                 route_Park = new ymaps.Polyline([
                     [47.294075613939555, 39.79409967230215],
                     [47.29362305921803, 39.794593198760886],
@@ -215,6 +294,43 @@
                         strokeColor: "#ed4543e6",
                         strokeWidth: 5
                     }),
+                point_spectatespot = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.292395422477604, 39.7910673312101]
+                    },
+                    properties: {
+                        iconCaption: "Смотровая площадка"
+                    }
+                }),
+                point_Parkcheckpoint1 = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.293709310998494, 39.79444959677788]
+                    },
+                    properties: {
+                        iconCaption: "Точка интереса"
+                    }
+                }),
+                point_Parkcheckpoint2 = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.294015880313175, 39.7674558452519]
+                    },
+                    properties: {
+                        iconCaption: "Точка интереса"
+                    }
+                }),
+                point_Parkcheckpoint3 = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.2925925080095, 39.752682237997846]
+                    },
+                    properties: {
+                        iconCaption: "Точка интереса"
+                    }
+                }),
+
                 route_RoseAv = new ymaps.Polyline([
                     [47.20577339205438, 39.63104596965061],
                     [47.205554046798284, 39.63114252917513],
@@ -235,6 +351,34 @@
                         strokeColor: "#d8b60c",
                         strokeWidth: 5
                     }),
+                point_FriendAv = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.204942468985585, 39.633445503957454]
+                    },
+                    properties: {
+                        iconCaption: "Аллея дружбы"
+                    }
+                }),
+                point_RoseAvfountain = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.2057645616428, 39.633436116225816]
+                    },
+                    properties: {
+                        iconCaption: "Фонтан"
+                    }
+                }),
+                point_soldiersVictoryMemorial = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.20771121130969, 39.63335699105956]
+                    },
+                    properties: {
+                        iconCaption: "Памятник Солдатам Победы"
+                    }
+                }),
+                
                 route_LeftCoast = new ymaps.Polyline([
                     [47.21145906242067, 39.73131779374725],
                     [47.211120058241605, 39.727810149098744],
@@ -257,6 +401,43 @@
                         strokeColor: "#09cc0b",
                         strokeWidth: 5
                     }),
+                point_LeftCoastfountain = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.21242673911266, 39.731082605966044]
+                    },
+                    properties: {
+                        iconCaption: "Фонтан"
+                    }
+                }),
+                point_WC = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.213402234511726, 39.738465386279344]
+                    },
+                    properties: {
+                        iconCaption: "W/C"
+                    }
+                }),
+                point_ropesPark = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.2136571853762, 39.738480138428876]
+                    },
+                    properties: {
+                        iconCaption: "Веревочный парк"
+                    }
+                }),
+                point_upsideHouse = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.212730585427465, 39.73751722539156]
+                    },
+                    properties: {
+                        iconCaption: "Перевернутый дом"
+                    }
+                }),
+                
                 route_Shepkin = new ymaps.Polyline([
                     [47.34124302770353, 39.7362530583351],
                     [47.339828227713305, 39.73672512712171],
@@ -282,8 +463,45 @@
                         strokeColor: "#1e98ffe6",
                         strokeWidth: 5
                     });
+            point_ShepkinRestzone = new ymaps.GeoObject({
+                geometry: {
+                    type: "Point",
+                    coordinates: [47.35107638638679, 39.75212299741883]
+                },
+                properties: {
+                    iconCaption: "Зона отдыха"
+                }
+            }),
+                point_Shepkincheckpoint1 = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.34214740742215, 39.740417837277526]
+                    },
+                    properties: {
+                        iconCaption: "Точка интереса"
+                    }
+                }),
+                point_Shepkincheckpoint2 = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.34989153402937, 39.746554731503515]
+                    },
+                    properties: {
+                        iconCaption: "Точка интереса"
+                    }
+                }),
+                point_Shepkincheckpoint3 = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.354674528835986, 39.75312077917197]
+                    },
+                    properties: {
+                        iconCaption: "Точка интереса"
+                    }
+                }),
 
-            route_Channel.events.add('click', function route_Channel_event() {
+                route_Channel.events.add('click', function route_Channel_event() {
+                    initDescription();
                 var title = document.getElementById('rout-label');
                 title.innerText = "МАРШРУТ \"ГРЕБНОЙ КАНАЛ\"";
                 var description = document.getElementById('description-options');
@@ -291,14 +509,18 @@
                 
             });
             route_Park.events.add('click', function route_Park_event() {
+                initDescription();
                 var title = document.getElementById('rout-label');
                 title.innerText = "МАРШРУТ \"ЛЕСОПАРК\"";
                 var description = document.getElementById('description-options');
                 description.innerHTML = '<div class="description-options" id="description-options"></div>';
                 makeDescriptionsItem('cafeicon', 'Чайхана', '4.7', '@');
                 makeDescriptionsItem('cafeicon', 'Узбекистан', '4.3', '@');
+                makeDescriptionsItem('checkpoint', 'Точка интереса', '', '@');
+                makeDescriptionsItem('checkpoint', 'Смотровая площадка', '', '@');
             });
             route_RoseAv.events.add('click', function route_RoseAv_event() {
+                initDescription();
                 var title = document.getElementById('rout-label');
                 title.innerText = "МАРШРУТ \"АЛЛЕЯ РОЗ\"";
                 var description = document.getElementById('description-options');
@@ -306,6 +528,7 @@
                 makeDescriptionsItem('cafeicon', 'SanRemo', '4.5', '@');
             });
             route_LeftCoast.events.add('click', function route_LeftCoast_event() {
+                initDescription();
                 var title = document.getElementById('rout-label');
                 title.innerText = "МАРШРУТ \"ЛЕВОБЕРЕЖНЫЙ ПАРК\"";
                 var description = document.getElementById('description-options');
@@ -319,10 +542,13 @@
                 makeDescriptionsItem('cafeicon', 'Cube', '4.1', '@');
             });
             route_Shepkin.events.add('click', function route_Shepkin_event() {
+                initDescription();
                 var title = document.getElementById('rout-label');
                 title.innerText = "МАРШРУТ \"ЩЕПКИНСКИЙ ЛЕС\"";
                 var description = document.getElementById('description-options');
                 description.innerHTML = '<div class="description-options" id="description-options"></div>';
+                makeDescriptionsItem('checkpoint', 'Точка интереса', '', '@');
+                makeDescriptionsItem('checkpoint', 'Зона отдыха', '', '@');
             });
 
             routeMap.geoObjects.add(point_Bikeshare)
@@ -330,6 +556,23 @@
                 .add(point_FrentaC)
                 .add(point_Lelush)
                 .add(point_Pines)
+                .add(point_WoodProkat)
+                .add(point_Bikeshare)
+                .add(point_Boomcoffee)
+                .add(point_Channelsharing)
+                .add(point_FriendAv)
+                .add(point_LeftCoastfountain)
+                .add(point_Parkcheckpoint1)
+                .add(point_Parkcheckpoint2)
+                .add(point_Parkcheckpoint3)
+                .add(point_Channelrestzone)
+                .add(point_ropesPark)
+                .add(point_RoseAvfountain)
+                .add(point_soldiersVictoryMemorial)
+                .add(point_spectatespot)
+                .add(point_sportsground)
+                .add(point_upsideHouse)
+                .add(point_WC)
                 .add(point_WoodProkat)
                 .add(route_LeftCoast)
                 .add(route_Shepkin)

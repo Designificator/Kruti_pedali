@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="../style/profilestyle.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header id="header" class="header">
+        <div class="hat">
+            <div class="container">
+                <div class="headerline">
+                    <div class="logo">
+                        <img src="../img/icon.svg">
+                    </div>
+                    <div class="options">
+                        <a class="opt-item" href="Mainreged">ГЛАВНАЯ</a>
+                        <a class="opt-item" href="Routs">МАРШРУТЫ</a>
+                        <a class="login-button" href="profile">Личный кабинет</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="section-container">
+            <div class="title">
+                Личные данные
+            </div>
+            <div class="data">
+                <div class="data-column">
+                    <div class="data-row">
+                        <div class="data-row-item-big" id="data-name">Самохина Анастасия</div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-column">
+                            <div class="data-row">
+                                <div class="data-row-item">e-mail</div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-row-item">Пароль</div>
+                            </div>
+                        </div>
+                        <div class="data-column">
+                            <div class="data-row">
+                                <div class="data-row-item" id="data-email">samohina@mail.com</div>
+                            </div>
+                            <div class="data-row">
+                                <button type="button" class="data-row-item" id="data-password">Показать</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-column">
+                    <div class="data-row">
+                        <div class="data-row-item" id="data-change">Изменить</div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-row-item" id="data-change">Изменить</div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-row-item" id="data-change">Изменить</div>
+                    </div>
+                </div>
+            </div>
+            <div class="picture-container">
+                <div class="picture" id="picture"></div>
+            </div>
+            <button class="label1" id="add-picture">Изменить фото</button>
+        </div>
+        <script src="../script/imgSelect.js"></script>
+        <script src="../script/reqSender.js"></script>
+        <script>
+            current.getUserData(function (name, email, password) {
+                const username = document.getElementById('data-name');
+                const userEmail = document.getElementById('data-email');
+                const userPassword = document.getElementById('data-password');
+
+                username.innerText = name;
+                userEmail.innerText = email;
+                function show() {
+                    userPassword.innerText = password;
+                }
+                userPassword.addEventListener('click', show);
+            })
+        </script>
+    </section>
+</body>
+</html>

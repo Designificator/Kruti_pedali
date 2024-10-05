@@ -20,11 +20,8 @@
                     <div class="options">
                         <a class="opt-item" href="Main" style="color: #C3D1F4;">ГЛАВНАЯ</a>
                         <a class="opt-item" href="Routs">МАРШРУТЫ</a>
-                        <a class="opt-item" href="login">АВТОРИЗАЦИЯ</a>
+                        <a class="login-button" href="login">Войти</a>
                     </div>
-                    <!--<div class="aut">
-        <a class="aut-button" href="login.html">АВТОРИЗАЦИЯ</a>
-    </div>-->
                 </div>
                 <div class="main">
                     <div class="main-bg"></div>
@@ -63,48 +60,45 @@
                 <div class="rectangles-item">
                     Добро пожаловать на сайт для поиска веломаршрутов! Здесь вы найдете множество интересных маршрутов для езды на велосипеде как для начинающих, так и для опытных райдеров
                 </div>
-                    <div class="rectangles-item">
-                        Не забывайте следить за прогнозом погоды и выбирать подходящее снаряжение для безопасной езды
-                    </div>
-                    <div class="rectangles-item">
-                        Не упустите возможность познакомиться с новыми местами и провести время активно и интересно – зарегистируйтесь на агрегаторе веломаршрутов и отправляйтесь в путь!
-                    </div>
+                <div class="rectangles-item">
+                    Не забывайте следить за прогнозом погоды и выбирать подходящее снаряжение для безопасной езды
+                </div>
+                <div class="rectangles-item">
+                    Не упустите возможность познакомиться с новыми местами и провести время активно и интересно – зарегистируйтесь на агрегаторе веломаршрутов и отправляйтесь в путь!
+                </div>
             </div>
             <div class="rectangles-images">
-                <div class="rectangles-images-item"><img src="../img/Rectangle.png" style="display: block;"></div>
+                <div class="rectangles-images-item"><img src="../img/main_section1.png" style="display: block;"></div>
                 <div class="rectangles-images-item"><img src="../img/Rectangle.png" style="display: block;"></div>
                 <div class="rectangles-images-item"><img src="../img/Rectangle.png" style="display: block;"></div>
             </div>
         </div>
-            
 
-            <!-- Comments container -->
-            <div class="comment-container" id="comment-container">
-                <div class="comments-title"><b>Отзывы</b></div>
-                <a class="main-text" href="Regist">Зарегистрируйтесь, чтобы оставлять отзывы</a>
-                <div class="comment-section">
-                    <!-- Unordered list for comments -->
-                    <div class="comment-list" id="comment-list">
-                        <!-- Один коммент <div class="comment-item">
 
-                <div class="comment-item-avatar"><img src="0lslz48qa80x7xarnt4ivlvtxnivvpmu.png" width="5vh" height="5vh"></div>
-                <div class="comment-item-inner">
-                <h3 id="comment-item-name"></h3>
-                <div class="comment-item-text"></div>
+        <!-- Comments container -->
+        <div class="comment-container" id="comment-container">
+            <div class="comments-title"><b>Отзывы</b></div>
+            <a class="main-text" href="regist">Зарегистрируйтесь, чтобы оставлять отзывы</a>
+            <div class="comment-section">
+                <!-- Unordered list for comments -->
+                <div class="comment-list" id="comment-list">
+                    <script src="../script/reqSender.js"></script>
+                    <script src="../script/CommentMaker.js"></script>
+
                 </div>
-            </div>-->
-                    </div>
-                    <div class="advert"></div>
-                </div>
+                <div class="advert"></div>
             </div>
-        <script src="script/CommentMaker.js"></script>
+        </div>
+        <script>
+            com_import();
+        </script>
     </section>
     <footer id="footer" class="footer">
         <div class="container">
             <div class="footer-options">
                 <a class="footer-opt-item" href="Main">ГЛАВНАЯ</a>
                 <a class="footer-opt-item" href="Routs">МАРШРУТЫ</a>
-                <a class="footer-opt-item" href="@">ОТЗЫВЫ</a>
+                <a class="footer-opt-item" href="login">ВОЙТИ</a>
                 <span class="footer-opt-item">Телефон: 8-800-55-35-35</span>
             </div>
         </div>

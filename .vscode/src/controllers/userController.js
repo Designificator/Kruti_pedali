@@ -13,6 +13,8 @@ exports.getUsers = async (req, res) => {
             res.status(200);
             req.session.authorized = true;
             req.session.username = result.rows[0].name;
+            req.session.email = result.rows[0].email;
+            req.session.password = result.rows[0].password;
             res.set('text').send('http://localhost:3002/Mainreged');
         } else {
             console.log("User not found");
@@ -23,13 +25,15 @@ exports.getUsers = async (req, res) => {
 
 exports.getSessionData = async (req, res) => {
     try {
-        res.status(200);
-        res.set('text');
+        res.status(200).json({
+            name: req.session.username,
+            email: req.session.email,
+            password: req.session.password
+        });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
     console.log("sent name: " + req.session.username);
-    res.send(req.session.username);
 }
 
 exports.createUser = async (req, res, next) => {
