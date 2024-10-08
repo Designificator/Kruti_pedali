@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Include=".vscode\public\html\Mainreged.html" />
     <None Include=".vscode\public\html\profile.html" />
+    <None Include=".vscode\public\html\Routsreged.html" />
     <None Include=".vscode\public\img\0lslz48qa80x7xarnt4ivlvtxnivvpmu.png" />
     <None Include=".vscode\public\img\anothercycle.png" />
     <None Include=".vscode\public\html\login.html" />
@@ -18,6 +19,7 @@
     <None Include=".vscode\public\img\main_section1.png" />
     <None Include=".vscode\public\img\profile_background.png" />
     <None Include=".vscode\public\script\CommentMaker.js" />
+    <None Include=".vscode\public\script\imageSlider.js" />
     <None Include=".vscode\public\script\imgSelect.js" />
     <None Include=".vscode\public\script\login.js" />
     <None Include=".vscode\public\script\reqSender.js" />

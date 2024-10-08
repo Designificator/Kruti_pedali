@@ -8,7 +8,7 @@ body {
     margin-left: 20px;
 }
 .header {
-    background-image: url(../img/main_background.png);
+    background-image: url(../img/main_background2.svg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -115,12 +115,14 @@ body {
     height: 262px;
     width: 262px;
     text-align: center;
+    align-content: center;
 }
 .card-content {
-
+    padding: 0px 11px 13px 11px;
+    margin: auto;
     text-decoration: underline;
     font-size: 24px;
-    color: #426151;
+    color: #424B61;
 }
 .description {
     display: flex;
@@ -206,6 +208,15 @@ h3 {
     margin-top: -5px;
     margin-bottom: 0px;
 }
+
+h4 {
+    font: 18px;
+    color: #426151;
+    margin: auto;
+    font-weight: 400;
+    padding: 0px 11px 0px 11px;
+}
+
 .comment-section{
     display: flex;
 }
@@ -215,8 +226,8 @@ h3 {
     padding: 15px;
     border-left: solid 2px #426151;
     height: 560px;
-    width: 60vw;
-    overflow-y: scroll;
+    width: 90%;
+    overflow-y: auto;
     overflow-x: hidden;
 }
     .comment-list::-webkit-scrollbar{
@@ -296,13 +307,6 @@ h3 {
     font-size: 16px;
     font-family: inherit;
     padding: 8px 15px 10px 15px;
-}
-.advert {
-    margin-left: 100px;
-    width: 320px;
-    height: 560px;
-    background-image: url(../img/maxresdefault.jpg);
-    display: inline;
 }
 
 .footer {

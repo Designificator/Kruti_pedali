@@ -31,6 +31,7 @@
             <div class="title">
                 Личные данные
             </div>
+            <div id="data-table-wrap">
             <div class="data">
                 <div class="data-column">
                     <div class="data-row">
@@ -56,16 +57,17 @@
                     </div>
                 </div>
                 <div class="data-column">
-                    <div class="data-row">
-                        <div class="data-row-item" id="data-change">Изменить</div>
+                    <div class="data-row" id="data-change-name-parent">
+                        <div class="data-row-item" id="data-change-name">Изменить</div>
                     </div>
-                    <div class="data-row">
-                        <div class="data-row-item" id="data-change">Изменить</div>
+                    <div class="data-row" id="data-change-email-parent">
+                        <div class="data-row-item" id="data-change-email">Изменить</div>
                     </div>
-                    <div class="data-row">
-                        <div class="data-row-item" id="data-change">Изменить</div>
+                    <div class="data-row" id="data-change-password-parent">
+                        <div class="data-row-item" id="data-change-password">Изменить</div>
                     </div>
                 </div>
+            </div>
             </div>
             <div class="picture-container">
                 <div class="picture" id="picture"></div>
@@ -75,18 +77,164 @@
         <script src="../script/imgSelect.js"></script>
         <script src="../script/reqSender.js"></script>
         <script>
-            current.getUserData(function (name, email, password) {
-                const username = document.getElementById('data-name');
-                const userEmail = document.getElementById('data-email');
-                const userPassword = document.getElementById('data-password');
+            const username = document.getElementById('data-name');
+            const userEmail = document.getElementById('data-email');
+            const userPassword = document.getElementById('data-password');
+            const BtnusernameParent = document.getElementById('data-change-name-parent');
+            const BtnuserEmailParent = document.getElementById('data-change-email-parent');
+            const BtnuserPasswordParent = document.getElementById('data-change-password-parent');
+            const table = document.getElementById('data-table-wrap');
 
+            function showErr(message) {
+                const error = document.createElement('div');
+                error.className = 'errmessage';
+                error.innerText = message;
+                table.insertAdjacentElement('afterbegin', error);
+                setTimeout(function hide() {
+                    table.removeChild(error);
+                }, 3000);
+            }
+
+            current.getUserData(function (name, email, password) {
                 username.innerText = name;
                 userEmail.innerText = email;
+                localStorage.setItem('password', password);
                 function show() {
-                    userPassword.innerText = password;
+                    userPassword.innerText = localStorage.getItem('password');
                 }
                 userPassword.addEventListener('click', show);
-            })
+            });
+            current.getUserId(id => {
+                localStorage.setItem('id', id);
+                console.log(id);
+            });
+            const changeNameBtn = document.getElementById('data-change-name');
+            const changeEmailBtn = document.getElementById('data-change-email');
+            const changePasswordBtn = document.getElementById('data-change-password');
+            
+            changeNameBtn.addEventListener('click', function InputName() {
+                BtnusernameParent.removeChild(changeNameBtn);
+                const input = document.createElement('div');
+                input.className = 'data-row-item';
+                input.id = 'data-change-name';
+                input.innerHTML = `<input type="text" id="name" class="data-input" placeholder="Новое имя"></input>
+                <button class="confirm-button" id="change-name-confirm"></button>`;
+                BtnusernameParent.insertAdjacentElement('beforeend', input);
+                const confirmBtn = document.getElementById('change-name-confirm');
+                const inputusername = document.getElementById('name');
+                confirmBtn.addEventListener('click', function changeName() {
+                    var newUsername = inputusername.value;
+                    if (newUsername == '') {
+                        showErr("Имя не может быть пустым!");
+                    }
+                    else {
+                        var userData = {
+                            "name": newUsername
+                        };
+                        var url = 'http://localhost:3002/api/users/' + localStorage.getItem('id');
+                        fetch(url, {
+                            method: 'PUT',
+                            headers: {
+                                "Content-type": "application/json; charset=utf-8"
+                            },
+                            body: JSON.stringify(userData)
+                        }).then(response => response.json())
+                            .then(response => {
+                                console.log(response);
+                                if (response.name != undefined) username.innerText = response.name;
+                            })
+                            .catch(function (err) {
+                                console.log('Fetch Error :-S', err);
+                                showErr("Не удалось изменить имя");
+                            });
+                    }
+                    BtnusernameParent.removeChild(input);
+                    BtnusernameParent.insertAdjacentElement('beforeend', changeNameBtn);
+                });
+            });
+            changeEmailBtn.addEventListener('click', function changeEmail() {
+                BtnuserEmailParent.removeChild(changeEmailBtn);
+                const input = document.createElement('div');
+                input.className = 'data-row-item';
+                input.id = 'data-change-name';
+                input.innerHTML = `<input type="email" id="email" class="data-input" placeholder="Новый email"></input>
+<button class="confirm-button" id="change-email-confirm"></button>`;
+                BtnuserEmailParent.insertAdjacentElement('beforeend', input);
+                const confirmBtn = document.getElementById('change-email-confirm');
+                const inputuserEmail = document.getElementById('email');
+                confirmBtn.addEventListener('click', function changeEmail() {
+                    var newUserEmail = inputuserEmail.value;
+                    if (newUserEmail == '') {
+                        showErr("email не может быть пустым!");
+                    }
+                    else {
+                        var userData = {
+                            "email": newUserEmail
+                        };
+                        var url = 'http://localhost:3002/api/users/' + localStorage.getItem('id');
+                        fetch(url, {
+                            method: 'PUT',
+                            headers: {
+                                "Content-type": "application/json; charset=utf-8"
+                            },
+                            body: JSON.stringify(userData)
+                        }).then(response => response.json())
+                            .then(response => {
+                                console.log(response);
+                                if (response.email != undefined) userEmail.innerText = response.email;
+                            })
+                            .catch(function (err) {
+                                console.log('Fetch Error :-S', err);
+                                showErr("Не удалось изменить email");
+                            });
+                    }
+                    BtnuserEmailParent.removeChild(input);
+                    BtnuserEmailParent.insertAdjacentElement('beforeend', changeEmailBtn);
+                });
+            });
+            changePasswordBtn.addEventListener('click', function changePassword() {
+                BtnuserPasswordParent.removeChild(changePasswordBtn);
+                const input = document.createElement('div');
+                input.className = 'data-row-item';
+                input.id = 'data-change-name';
+                input.innerHTML = `<input type="text" id="password" class="data-input" placeholder="Новый пароль"></input>
+<button class="confirm-button" id="change-password-confirm"></button>`;
+                BtnuserPasswordParent.insertAdjacentElement('beforeend', input);
+                const confirmBtn = document.getElementById('change-password-confirm');
+                const inputuserPassword = document.getElementById('password');
+                confirmBtn.addEventListener('click', function changeEmail() {
+                    var newUserPassword = inputuserPassword.value;
+                    if (newUserPassword == '') {
+                        showErr("Пароль не может быть пустым!");
+                    }
+                    else {
+                        var userData = {
+                            "password": newUserPassword
+                        };
+                        var url = 'http://localhost:3002/api/users/' + localStorage.getItem('id');
+                        fetch(url, {
+                            method: 'PUT',
+                            headers: {
+                                "Content-type": "application/json; charset=utf-8"
+                            },
+                            body: JSON.stringify(userData)
+                        }).then(response => response.json())
+                            .then(response => {
+                                console.log(response);
+                                if (response.password != undefined) {
+                                    userPassword.innerText = response.password;
+                                    userPassword.removeEventListener('click', show);
+                                }
+                            })
+                            .catch(function (err) {
+                                console.log('Fetch Error :-S', err);
+                                showErr("Не удалось изменить пароль");
+                            });
+                    }
+                    BtnuserPasswordParent.removeChild(input);
+                    BtnuserPasswordParent.insertAdjacentElement('beforeend', changePasswordBtn);
+                });
+            });
         </script>
     </section>
 </body>

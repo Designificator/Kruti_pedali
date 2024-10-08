@@ -3,29 +3,36 @@ const pool = require('../config/db');
 exports.getUsers = async (req, res) => {
     const { email, password } = req.body;
     console.log('password and email ', email, password);
-    pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password], (err, result) => {
-        if (err) {
-            console.error("Error in SQL query:", err);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
-        if (result.rows != null) {
-            console.log("User found");
-            res.status(200);
-            req.session.authorized = true;
-            req.session.username = result.rows[0].name;
-            req.session.email = result.rows[0].email;
-            req.session.password = result.rows[0].password;
-            res.set('text').send('http://localhost:3002/Mainreged');
-        } else {
-            console.log("User not found");
-            res.status(401).json({ error: 'Invalid credentials' });
-        }
-    });
+    try {
+        pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password], (err, result) => {
+            if (err) {
+                console.error("Error in SQL query:", err);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            if (result.rows != null && result.rows[0] != undefined) {
+                res.status(200);
+                req.session.authorized = true;
+                req.session.userid = result.rows[0].id;
+                console.log('user id: ', req.session.userid);
+                req.session.username = result.rows[0].name;
+                req.session.email = result.rows[0].email;
+                req.session.password = result.rows[0].password;
+                res.set('text').send('http://localhost:3002/Mainreged');
+            } else {
+                console.log("User not found");
+                res.status(401).json({ error: 'Invalid credentials' });
+            }
+        });
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 };
 
 exports.getSessionData = async (req, res) => {
     try {
         res.status(200).json({
+            id: req.session.userid,
             name: req.session.username,
             email: req.session.email,
             password: req.session.password
@@ -43,6 +50,9 @@ exports.createUser = async (req, res, next) => {
         res.status(201);
         req.session.authorized = true;
         req.session.username = name;
+        req.session.email = email;
+        req.session.password = password;
+        req.session.id = result.rows[0].id;
         res.set('text').send('http://localhost:3002/Mainreged');
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -52,9 +62,20 @@ exports.createUser = async (req, res, next) => {
 
 exports.updateUser = async (req, res) => {
     const { id } = req.params;
-    const { name, email, password } = req.body;
+    const name = req.body.name;
+    const email = req.body.email;
+    const password = req.body.password;
+    console.log('PUT req: ', name, id);
     try {
-        const result = await pool.query('UPDATE users SET name = $1, email = $2, password = $3 WHERE id = $4 RETURNING *', [name, email, password, id]);
+        if (name != null) {
+            result = await pool.query('UPDATE users SET name = $1 WHERE id = $2 RETURNING *', [name, id]);
+        }
+        if (email != null) {
+            result = await pool.query('UPDATE users SET email = $1 WHERE id = $2 RETURNING *', [email, id]);
+        }
+        if (password != null) {
+            result = await pool.query('UPDATE users SET password = $1 WHERE id = $2 RETURNING *', [password, id]);
+        }
         res.status(200).json(result.rows[0]);
     } catch (err) {
         res.status(500).json({ error: err.message });

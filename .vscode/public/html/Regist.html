@@ -17,6 +17,7 @@
                 <div class="main">
                     <div class="picture-container">
                         <div class="picture" id="picture">
+                            <input type="file" accept="image/*" id="file" />
                         </div>
                         <button class="label1" id="add-picture">Добавить фото</button>
                     </div>
@@ -79,7 +80,8 @@
                         headers: {
                             "Content-type": "application/json; charset=utf-8"
                         },
-                        body: JSON.stringify(userData)
+                        body: JSON.stringify(userData),
+                        files: 
                     })
                         .then(
                             function (response) {

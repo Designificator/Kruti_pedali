@@ -29,6 +29,11 @@ class reqSender {
     });
         return this.userData;
     }
+    getUserId(dosmth) {
+        this.getData('http://localhost:3002/api/users', () => { }, (data) => {
+            dosmth(data.id);
+        });
+    }
     getCommentData(dosmth) {
         console.log("getCommentData func call");
         this.getData('http://localhost:3002/api/comments', () => { }, (data) => {

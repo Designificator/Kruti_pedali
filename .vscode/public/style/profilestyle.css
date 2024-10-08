@@ -78,6 +78,10 @@ section {
     margin-right: 15px;
 }
 
+#data-table-wrap{
+    display: flex;
+    flex-direction: column;
+}
 .data{
     display: flex;
     flex-direction: row;
@@ -108,8 +112,17 @@ section {
     margin-bottom: -5px;
 }
 
-#data-change {
+#data-change-name {
     color: #6C7794;
+    cursor: pointer;
+}
+#data-change-email {
+    color: #6C7794;
+    cursor: pointer;
+}
+#data-change-password {
+    color: #6C7794;
+    cursor: pointer;
 }
 #data-password{
     border: 0px;
@@ -141,3 +154,30 @@ section {
     .label1:hover {
         text-decoration: underline;
     }
+.data-input {
+    margin-right: 10px;
+    width: 180px;
+    height: 25px;
+    background-color: #DBE6D8;
+    border-radius: 5px;
+    border: 1px solid #426151;
+    color: #426151;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: inherit;
+    padding-left: 10px;
+}
+.confirm-button {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border: 0;
+    background-image: url('../img/checkbox-checked-svgrepo-com.svg');
+    background-size: cover;
+}
+.errmessage{
+    margin: auto;
+    color: #c90202;
+    font-size: 16px;
+    padding-top: 10px;
+}

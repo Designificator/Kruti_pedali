@@ -2,9 +2,17 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const pool = require('./config/db.js');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 const publicHTMLPath = path.join(__dirname, '../public/html');
 const publicDirPath = path.join(__dirname, '../public/');
 const session = require('express-session');
@@ -44,7 +52,8 @@ var siteUrls = [
     , { pattern: '^/Main$', restricted: false }
     , { pattern: '^/regist$', restricted: false }
     , { pattern: '^/Routs$', restricted: false }
-    , {pattern: '^/profile$', restricted: true}
+    , { pattern: '^/profile$', restricted: true }
+    , { pattern: '^/Routsreged$', restricted: true }
 ];
 
 function authorizeUrls(urls) {

@@ -18,7 +18,7 @@
 }
 
 .options {
-    margin-left: 781px;
+    margin-left: auto;
     font-family: "Inter", sans-serif;
 }
 
@@ -61,7 +61,7 @@
     background-color: #EFF0EB;
     font-size: 20px;
     font-weight: 700;
-    margin-right: 32px;
+    margin-right: 50px;
     border-radius: 10px;
     color: #426151;
 }
@@ -89,14 +89,21 @@
     background-color: #DCE7D9;
     opacity: 0.7;
     filter: alpha(opacity = 70);
-}
-
-.title-text {
-    margin: auto;
-    padding-top: 30px;
     z-index: 1;
+}
+.title-text-holder{
+    padding-top: 20px;
+    margin: auto;
+    display: flex;
+}
+.title-text {
+    padding: 30px 32px 30px 32px;
+    margin: auto;
+    z-index: 3;
     color: #424B61;
     text-align: center;
+    border-radius: 100px 0px 100px 0px;
+    background-color: #DCE7D9;
 }
 
 .description-holder {
@@ -129,7 +136,6 @@ h1 {
     color: #424B61;
     font-size: 40px;
     font-weight: 400;
-    text-decoration: underline;
 }
 
 h2 {
@@ -168,6 +174,10 @@ h3 {
     display: flex;
     flex-direction: column;
     margin-left: 52px;
+    width: 129px;
+    height: 129px;
+    background-size: cover;
+    border-radius: 20px;
 }
 .description-item-content {
    margin-bottom: 23px;
@@ -215,15 +225,69 @@ h3 {
     border-radius: 20px;
 }
 
-.pic-number {
+.slider{
+    cursor: pointer;
+    height: 485px;
+    width: 485px;
+    border-radius: 20px;
+    background-size: cover;
+}
+.full-img-container {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+}
+.full-img-item {
+    margin: auto;
+    height: 100%;
+}
+.full-img-close {
+    cursor: pointer;
     position: absolute;
-    margin-left: 409px;
-    margin-top: 25px;
-    padding: 6px 16px 6px 16px;
-    background-color: #B6CEAE;
+    border: 0;
+    border-radius: 7px;
+    top: 0;
+    right: 0;
+    z-index: 11;
+    height: 63px;
+    width: 63px;
+    background-color: none;
+    background-image: url('../img/close-square-svgrepo-com.svg');
+    background-size: contain;
+}
+.full-img-right {
+    cursor: pointer;
+    position: absolute;
+    border: 0;
     border-radius: 5px;
-    border: 2px solid #426151;
-    font-size: 30px;
-    font-weight: 700;
-    color: #426151;
+    top: 45%;
+    right: 0;
+    align-self: center;
+    z-index: 11;
+    height: 105px;
+    width: 105px;
+    background-color: none;
+    background-image: url('../img/arrow-circle-right-svgrepo-com.svg');
+    background-size: contain;
+}
+.full-img-left {
+    cursor: pointer;
+    position: absolute;
+    border: 0;
+    border-radius: 5px;
+    top: 45%;
+    left: 0;
+    align-self: center;
+    z-index: 11;
+    height: 105px;
+    width: 105px;
+    background-color: none;
+    background-image: url('../img/arrow-circle-left-svgrepo-com.svg');
+    background-size: contain;
 }
