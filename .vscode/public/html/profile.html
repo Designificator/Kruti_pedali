@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <link rel="stylesheet" href="../style/profilestyle.css" type="text/css">
+    <link rel="stylesheet" href="../style/profilestyle.css" type="text/css" media="all and (not handheld), screen">
+    <link rel="stylesheet" href="../style/mobile/profilestyle.css" type="text/css" media="handheld, only screen and (max-device-width:480px)" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -19,7 +20,7 @@
                     </div>
                     <div class="options">
                         <a class="opt-item" href="Mainreged">ГЛАВНАЯ</a>
-                        <a class="opt-item" href="Routs">МАРШРУТЫ</a>
+                        <a class="opt-item" href="Routsreged">МАРШРУТЫ</a>
                         <a class="login-button" href="profile">Личный кабинет</a>
                     </div>
                 </div>
@@ -32,49 +33,49 @@
                 Личные данные
             </div>
             <div id="data-table-wrap">
-            <div class="data">
-                <div class="data-column">
-                    <div class="data-row">
-                        <div class="data-row-item-big" id="data-name">Самохина Анастасия</div>
-                    </div>
-                    <div class="data-row">
-                        <div class="data-column">
-                            <div class="data-row">
-                                <div class="data-row-item">e-mail</div>
+                <div class="data">
+                    <div class="data-column">
+                        <div class="data-row">
+                            <div class="data-row-item-big" id="data-name"></div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-column">
+                                <div class="data-row">
+                                    <div class="data-row-item">e-mail</div>
+                                </div>
+                                <div class="data-row">
+                                    <div class="data-row-item">Пароль</div>
+                                </div>
                             </div>
-                            <div class="data-row">
-                                <div class="data-row-item">Пароль</div>
+                            <div class="data-column">
+                                <div class="data-row">
+                                    <div class="data-row-item" id="data-email"></div>
+                                </div>
+                                <div class="data-row">
+                                    <button type="button" class="data-row-item" id="data-password">Показать</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="data-column">
-                            <div class="data-row">
-                                <div class="data-row-item" id="data-email">samohina@mail.com</div>
-                            </div>
-                            <div class="data-row">
-                                <button type="button" class="data-row-item" id="data-password">Показать</button>
-                            </div>
+                    </div>
+                    <div class="data-column">
+                        <div class="data-row" id="data-change-name-parent">
+                            <div class="data-row-item" id="data-change-name">Изменить</div>
+                        </div>
+                        <div class="data-row" id="data-change-email-parent">
+                            <div class="data-row-item" id="data-change-email">Изменить</div>
+                        </div>
+                        <div class="data-row" id="data-change-password-parent">
+                            <div class="data-row-item" id="data-change-password">Изменить</div>
                         </div>
                     </div>
                 </div>
-                <div class="data-column">
-                    <div class="data-row" id="data-change-name-parent">
-                        <div class="data-row-item" id="data-change-name">Изменить</div>
-                    </div>
-                    <div class="data-row" id="data-change-email-parent">
-                        <div class="data-row-item" id="data-change-email">Изменить</div>
-                    </div>
-                    <div class="data-row" id="data-change-password-parent">
-                        <div class="data-row-item" id="data-change-password">Изменить</div>
-                    </div>
-                </div>
             </div>
-            </div>
-            <div class="picture-container">
-                <div class="picture" id="picture"></div>
-            </div>
-            <button class="label1" id="add-picture">Изменить фото</button>
+            <!--<div class="picture-container">
+        <div class="picture" id="picture"></div>
+    </div>
+    <button class="label1" id="add-picture">Изменить фото</button>-->
+            <button class="exit-button" id="exit-button">Выйти</button>
         </div>
-        <script src="../script/imgSelect.js"></script>
         <script src="../script/reqSender.js"></script>
         <script>
             const username = document.getElementById('data-name');
@@ -108,6 +109,14 @@
                 localStorage.setItem('id', id);
                 console.log(id);
             });
+            /*current.getImageData(localStorage.getItem('id'), data => {
+                const pfp = document.getElementById('picture');
+                if (data != null) {
+                    let pfp_url = "url('" + URL.createObjectURL(data) + "')";
+                    pfp.style.backgroundImage = pfp_url;
+                }
+               
+            });*/
             const changeNameBtn = document.getElementById('data-change-name');
             const changeEmailBtn = document.getElementById('data-change-email');
             const changePasswordBtn = document.getElementById('data-change-password');
@@ -131,7 +140,7 @@
                         var userData = {
                             "name": newUsername
                         };
-                        var url = 'http://localhost:3002/api/users/' + localStorage.getItem('id');
+                        var url = '/api/users/' + localStorage.getItem('id');
                         fetch(url, {
                             method: 'PUT',
                             headers: {
@@ -171,7 +180,7 @@
                         var userData = {
                             "email": newUserEmail
                         };
-                        var url = 'http://localhost:3002/api/users/' + localStorage.getItem('id');
+                        var url = '/api/users/' + localStorage.getItem('id');
                         fetch(url, {
                             method: 'PUT',
                             headers: {
@@ -211,7 +220,7 @@
                         var userData = {
                             "password": newUserPassword
                         };
-                        var url = 'http://localhost:3002/api/users/' + localStorage.getItem('id');
+                        var url = '/api/users/' + localStorage.getItem('id');
                         fetch(url, {
                             method: 'PUT',
                             headers: {
@@ -234,6 +243,14 @@
                     BtnuserPasswordParent.removeChild(input);
                     BtnuserPasswordParent.insertAdjacentElement('beforeend', changePasswordBtn);
                 });
+            });
+            const exitBtn = document.getElementById('exit-button');
+            exitBtn.addEventListener('click', function exit() {
+                fetch('/api/users/quit', response => response.json()).then(res => console.log(res))
+                    .catch(err => {
+                        console.log('Fetch Error :-S', err);
+                    });
+                window.location.href = '/Main';
             });
         </script>
     </section>

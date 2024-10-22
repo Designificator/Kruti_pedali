@@ -3,7 +3,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="../style/registstyles.css">
+    <link rel="stylesheet" type="text/css" href="../style/registstyles.css" media="all and (not handheld), screen">
+    <link rel="stylesheet" href="../style/mobile/registstyles.css" type="text/css" media="handheld, only screen and (max-device-width:480px)" />
     <title></title>
 </head>
 <body>
@@ -11,16 +12,15 @@
         <div class="outer-rectangle" id="outer-rectangle">
             <div class="rectangle">
                 <div class="title">
-                    <img src="../img/icon.svg" width="64px" , height="64px">
+                    <img src="../img/icon.svg" id="icon">
                     <div class="text">КРУТИ ПЕДАЛИ</div>
                 </div>
                 <div class="main">
-                    <div class="picture-container">
-                        <div class="picture" id="picture">
-                            <input type="file" accept="image/*" id="file" />
-                        </div>
-                        <button class="label1" id="add-picture">Добавить фото</button>
-                    </div>
+                    <!--<div class="picture-container">
+        <div class="picture" id="picture"><input type="file" accept="image/*" id="img-select"/>
+        </div>
+        <button class="label1" id="add-picture">Добавить фото</button>
+    </div>-->
                     <div class="form">
                         <form name="signup">
                             <input class="input" type="text" id="user_name" name="name" placeholder="Имя" required />
@@ -30,7 +30,6 @@
                     </div>
                 </div>
             </div>
-
             <script>
                 //const picture_style = picture.style
 
@@ -67,6 +66,7 @@
                     const userName = document.getElementById("user_name");
                     const userEmail = document.getElementById("user_email");
                     const userPass = document.getElementById("user_password");
+
                     if (!isValid(userName, userEmail, userPass)) {
                         return;
                     }
@@ -75,13 +75,12 @@
                         "email": userEmail.value,
                         "password": userPass.value
                     };
-                    fetch('http://localhost:3002/api/users', {
+                    fetch('/api/users', {
                         method: 'post',
                         headers: {
                             "Content-type": "application/json; charset=utf-8"
                         },
-                        body: JSON.stringify(userData),
-                        files: 
+                        body: JSON.stringify(userData)
                     })
                         .then(
                             function (response) {
@@ -106,9 +105,32 @@
                             showErr("Не удалось зарегистрироваться: страница временно недоступна");
                         });
                 }
+                    /*fetch('http://localhost:3002/api/images', {
+                        method: 'post',
+                        headers: {
+                            "Content-type": "application/blob; charset=utf-8"
+                        },
+                        body: imgData
+                    })
+                        .then(
+                            function (response) {
+                                if (response.status !== 201) {
+                                    console.log('Looks like there was a problem. Status Code: ' +
+                                        response.status);
+                                    return;
+                                }
+                                else {
+                                    console.log('uploaded image');
+                                }
+                            }
+                        )
+                        .catch(function (err) {
+                            console.log('Fetch Error :-S', err);
+                        });
+                }*/
 
             </script>
-            <script src="script/imgSelect.js" type="text/javascript" charset="utf-8"></script>
+
             <div class="under-rectangle">
                 <button onclick="login()" class="button-reg" id="button-reg">Регистрация</button>
             </div>

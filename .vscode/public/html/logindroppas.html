@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заголовок страницы</title>
+    <link rel="stylesheet" type="text/css" href="../style/autostyle.css" media="all and (not handheld), screen">
+    <link rel="stylesheet" href="../style/mobile/autostyle.css" type="text/css" media="handheld, only screen and (max-device-width:600px)" />
+</head>
+<body>
+    <div class="container">
+        <div class="outer-rectangle" id="outer-rectangle">
+            <div class="rectangle">
+                <span class="title">
+                    <img src="../img/icon.svg" id="icon">
+                    <div class="text">КРУТИ ПЕДАЛИ</div>
+                </span>
+                <form name="signup">
+                    <input class="input" type="text" id="email" name="email" placeholder="E-mail" />
+                    <input class="input" type="text" id="email" name="email" placeholder="E-mail" />
+                </form>
+            </div>
+            <div class="under-rectangle">
+                <button onclick="sendCode()" class="button-autor">Подтвердить</button>
+                <button onclick="loginByCode()" class="button-autor">Подтвердить</button>
+
+                <script type="text/javascript" charset="utf-8">
+                    function showErr(message) {
+                        const previosMessage = document.getElementById('err-message');
+                        if (previosMessage == null) {
+                            const mainBlock = document.getElementById('outer-rectangle');
+                            const errMessageBlock = document.createElement('div');
+                            errMessageBlock.className = 'label2';
+                            errMessageBlock.innerText = message;
+                            errMessageBlock.id = 'err-message';
+                            mainBlock.insertAdjacentElement('beforeend', errMessageBlock);
+                        }
+                        else {
+                            previosMessage.innerText = message;
+                        }
+                    }
+                    function sendCode() {
+                        var email = document.getElementById('email').value;
+                        var userData = {
+                            "email": email,
+                        };
+                        fetch('/api/users/login/sendcode', {
+                            method: 'post',
+                            headers: {
+                                "Content-type": "application/json; charset=utf-8"
+                            },
+                            body: JSON.stringify(userData)
+                        })
+                            .then(
+                                function (response) {
+                                    if (response.status == 401) {
+                                        console.log('Looks like there was a problem. Status Code: ' +
+                                            response.status);
+                                        showErr("Неверно указан логин или пароль");
+                                        return;
+                                    }
+                                    else if (response.status == 200) {
+                                        return response.text();
+                                    }
+                                    else {
+                                        console.log('Looks like there was a problem. Status Code: ' +
+                                            response.status);
+                                        showErr("Что-то пошло не так, повторите попытку позже");
+                                        return;
+                                    }
+                                }
+                            )
+                            .catch(function (err) {
+                                console.log('Fetch Error :-S', err);
+                                showErr("Не удалось зарегистрироваться: страница временно недоступна");
+                            });
+
+                    }
+                    function loginByCode() {
+                        var code = document.getElementById('code').value;
+                        var Data = {
+                            "code": code
+                        };
+                        fetch('/api/users/login/nopass', {
+                            method: 'post',
+                            headers: {
+                                "Content-type": "application/json; charset=utf-8"
+                            },
+                            body: JSON.stringify(userData)
+                        })
+                            .then(
+                                function (response) {
+                                    if (response.status == 401) {
+                                        console.log('Looks like there was a problem. Status Code: ' +
+                                            response.status);
+                                        showErr("Неверно указан логин или пароль");
+                                        return;
+                                    }
+                                    else if (response.status == 200) {
+                                        return response.text();
+                                    }
+                                    else {
+                                        console.log('Looks like there was a problem. Status Code: ' +
+                                            response.status);
+                                        showErr("Что-то пошло не так, повторите попытку позже");
+                                        return;
+                                    }
+                                }
+                        ).then(responseText => {
+                            if (responseText != 'undefined' && responseText != null) {
+                                console.log(responseText);
+                                window.location.href = responseText;
+                            }
+                        })
+                            .catch(function (err) {
+                                console.log('Fetch Error :-S', err);
+                                showErr("Не удалось зарегистрироваться: страница временно недоступна");
+                            });
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

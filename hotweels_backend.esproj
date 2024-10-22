@@ -8,6 +8,7 @@
     <None Remove=".gitattributes" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".vscode\public\html\logindroppas.html" />
     <None Include=".vscode\public\html\Mainreged.html" />
     <None Include=".vscode\public\html\profile.html" />
     <None Include=".vscode\public\html\Routsreged.html" />
@@ -21,7 +22,7 @@
     <None Include=".vscode\public\script\CommentMaker.js" />
     <None Include=".vscode\public\script\imageSlider.js" />
     <None Include=".vscode\public\script\imgSelect.js" />
-    <None Include=".vscode\public\script\login.js" />
+    <None Include=".vscode\public\script\mobileSlider.js" />
     <None Include=".vscode\public\script\reqSender.js" />
     <None Include=".vscode\public\script\yamaps.js" />
     <None Include=".vscode\public\style\autostyle.css" />
@@ -33,6 +34,11 @@
     <None Include=".vscode\public\html\Main.html" />
     <None Include=".vscode\public\img\maxresdefault.jpg" />
     <None Include=".vscode\public\html\Regist.html" />
+    <None Include=".vscode\public\style\mobile\autostyle.css" />
+    <None Include=".vscode\public\style\mobile\profilestyle.css" />
+    <None Include=".vscode\public\style\mobile\registstyles.css" />
+    <None Include=".vscode\public\style\mobile\routstyles.css" />
+    <None Include=".vscode\public\style\mobile\styles.css" />
     <None Include=".vscode\public\style\profilestyle.css" />
     <None Include=".vscode\public\style\registstyles.css" />
     <None Include=".vscode\public\img\rightarrow.svg" />
@@ -47,6 +53,7 @@
     <None Include=".vscode\src\app.js" />
     <None Include=".vscode\src\config\db.js" />
     <None Include=".vscode\src\controllers\comentController.js" />
+    <None Include=".vscode\src\controllers\imageController.js" />
     <None Include=".vscode\src\controllers\userController.js" />
     <None Include=".vscode\src\logger.js" />
     <None Include=".vscode\src\models\userModel.js" />

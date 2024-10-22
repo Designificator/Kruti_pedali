@@ -1,16 +1,16 @@
 var picture = document.getElementById('picture');
-var pictureUrl;
-var file;
+var files;
 async function addPicture() {
-    file = await selectFile("image/*");
-    pictureUrl = URL.createObjectURL(file);
-    picture.innerHTML = `<div class="picture" id="picture" style="background-image: url(${pictureUrl})"></div>`;
+    files = await selectFile("image/*");
+    picture.innerHTML = `<div class="picture" id="picture" style="background-image: url(${URL.createObjectURL(files)})"></div>`;
 }
 
 function selectFile(contentType) {
     return new Promise(resolve => {
-        const input = document.getElementById('file');
-
+        let input = document.createElement('input');
+        input.type = 'file';
+        input.accept = contentType;
+        input.id = 'img-select';
         input.onchange = _ => {
             resolve(input.files[0]);
         };

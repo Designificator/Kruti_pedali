@@ -1,59 +1,61 @@
 ﻿body, html {
     margin: 0;
     height: 100%;
+    width: 100%;
     font-family: "Verdana", sans-serif;
-    background-image: url(../img/login_background.png);
+    background-image: url(../../img/login_background.png);
     background-size: cover;
+    background-repeat: no-repeat;
 }
 .container {
-    padding-top: 40px;
+    padding-top: 5vh;
 }
 .outer-rectangle {
     margin: auto;
     position: relative;
-    width: 374px;
-    height: 619px;
+    width: 70vw;
+    height: 56vh;
     background-color: #DBE6D8;
-    border-radius: 50px;
+    border-radius: 10vw;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .rectangle {
     margin: auto;
-    width: 303px;
+    width: 65vw;
     background-color: #EFF0EB;
-    border-radius: 55px;
-    padding-bottom: 50px;
+    border-radius: 10vw;
+    padding-bottom: 5vh;
 }
 .title{
-    padding: 29px 27px 40px 33px;
+    padding: 2vh 0 3vh 5vw;
     display: flex;
     align-items: center;
 }
 .text {
     text-align: center;
     color: #426151;
-    font-size: 18px;
+    font-size: 46px;
     font-weight: 700;
-    margin-left: 10px;
+    margin-left: 3vw;
 }
 
 .input {
     margin: auto;
-    width: 217px;
-    height: 49px;
+    width: 50vw;
+    height: 4vh;
     background-color: #DBE6D8;
-    border-radius: 15px;
-    border: 2px solid #426151;
-    margin-bottom: 31px;
+    border-radius: 2vw;
+    border: 1px solid #426151;
+    margin-bottom: 2vh;
     align-items: center;
     display: flex;
     color: #426151;
-    font-size: 20px;
+    font-size: 28px;
     font-weight: 400;
     font-family: inherit;
-    padding-left: 31px;
+    padding-left: 13px;
 }
 
 .label1,
@@ -67,7 +69,7 @@
 }
 
 .label1 {
-    font-size: 20px;
+    font-size: 10px;
 
 }
     .label1:hover {
@@ -90,21 +92,21 @@
 }
 
 .button-autor {
-    font-size: 23px;
+    font-size: 48px;
     font-weight: 400;
-    border: 2px solid #426151;
-    border-radius: 15px;
-    padding: 21px 61px 20px 61px;
+    border: 1px solid #426151;
+    border-radius: 2vw;
+    padding: 1vh 8vw 1vh 8vw;
     background: none;
 }
 
 .button-reg {
-    padding-top: 24px;
-    font-size: 20px;
+    padding-top: 2vh;
+    font-size: 42px;
     font-weight: 400;
 }
 
 #icon {
-    width: 64px;
-    height: 64px;
+    width: 12vw;
+    height: 12vw;
 }

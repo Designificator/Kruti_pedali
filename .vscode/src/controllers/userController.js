@@ -1,4 +1,6 @@
 const pool = require('../config/db');
+require('dotenv').config();
+const localhost = process.env.SERVER_IP + ':' + process.env.SERVER_PORT.toString();
 
 exports.getUsers = async (req, res) => {
     const { email, password } = req.body;
@@ -17,7 +19,7 @@ exports.getUsers = async (req, res) => {
                 req.session.username = result.rows[0].name;
                 req.session.email = result.rows[0].email;
                 req.session.password = result.rows[0].password;
-                res.set('text').send('http://localhost:3002/Mainreged');
+                res.set('text').send('http://' + localhost + '/Mainreged');
             } else {
                 console.log("User not found");
                 res.status(401).json({ error: 'Invalid credentials' });
@@ -44,7 +46,7 @@ exports.getSessionData = async (req, res) => {
 }
 
 exports.createUser = async (req, res, next) => {
-    const { name, email, password } = req.body;
+    const { name, email, password} = req.body;
     try {
         const result = await pool.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *', [name, email, password]);
         res.status(201);
@@ -52,8 +54,8 @@ exports.createUser = async (req, res, next) => {
         req.session.username = name;
         req.session.email = email;
         req.session.password = password;
-        req.session.id = result.rows[0].id;
-        res.set('text').send('http://localhost:3002/Mainreged');
+        req.session.userid = result.rows[0].id;
+        res.set('text').send('http://' + localhost + '/Mainreged');
     } catch (err) {
         res.status(500).json({ error: err.message });
         next();
@@ -92,8 +94,42 @@ exports.deleteUser = async (req, res) => {
     }
 };
 
+exports.removeSession = async (req, res) => {
+    try {
+        delete req.session;
+        res.writeHead(303, { 'Location': '/Main' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
 
-
+exports.sendCode = async (req, res) => {
+    /*const { email } = req.body;
+    try {
+        pool.query('SELECT * FROM users WHERE email = $1', [email], (err, result) => {
+            if (err) {
+                console.error("Error in SQL query:", err);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            if (result.rows != null && result.rows[0] != undefined) {
+                res.status(200);
+                req.session.userid = result.rows[0].id;
+                console.log('user id: ', req.session.userid);
+                req.session.username = result.rows[0].name;
+                req.session.email = result.rows[0].email;
+                req.session.password = result.rows[0].password;
+                
+            } else {
+                console.log("User not found");
+                res.status(401).json({ error: 'Invalid credentials' });
+            }
+        });
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+    }*/
+}
+exports.dropPassword = async (req, res) => { }
 /*const logger = require('./logger');
 
 app.use((req, res, next) => {

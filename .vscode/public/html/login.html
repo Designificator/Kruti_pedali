@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Заголовок страницы</title>
-    <link rel="stylesheet" type="text/css" href="../style/autostyle.css">
-
+    <link rel="stylesheet" type="text/css" href="../style/autostyle.css" media="all and (not handheld), screen">
+    <link rel="stylesheet" href="../style/mobile/autostyle.css" type="text/css" media="handheld, only screen and (max-device-width:600px)" />
 </head>
 <body>
     <div class="container">
     <div class="outer-rectangle" id="outer-rectangle">
-            <div class="rectangle">
-                <span class="title">
-                    <img src="../img/icon.svg" width="64px", height="64px">
-                    <div class="text">КРУТИ ПЕДАЛИ</div>
-                </span>
-                <form name="signup">
-                    <input class="input" type="text" id="email" name="email" placeholder="E-mail" />
-                    <input class="input" type="password" id="password" name="password" placeholder="Пароль" />
-                </form>
-                <a class="label1" href="@">Забыли пароль?</a>
-            </div>
+        <div class="rectangle">
+            <span class="title">
+                <img src="../img/icon.svg" id="icon">
+                <div class="text">КРУТИ ПЕДАЛИ</div>
+            </span>
+            <form name="signup">
+                <input class="input" type="text" id="email" name="email" placeholder="E-mail" />
+                <input class="input" type="password" id="password" name="password" placeholder="Пароль" />
+            </form>
+            <!--<a class="label1" href="logindroppas">Забыли пароль?</a>-->
+        </div>
             <div class="under-rectangle">
                 <button onclick="loginUser()" class="button-autor">Войти</button>
                 <a class="button-reg" href="regist">Регистрация</a>
+
                 <script type="text/javascript" charset="utf-8">
                     function showErr(message) {
                         const previosMessage = document.getElementById('err-message');
@@ -45,7 +46,7 @@
                 "email": email,
                 "password": password
             };
-            fetch('http://localhost:3002/api/users/login', {
+            fetch('/api/users/login', {
                 method: 'post',
                 headers: {
                     "Content-type": "application/json; charset=utf-8"
@@ -72,6 +73,7 @@
                     }
             ).then(responseText => {
                 if (responseText != 'undefined' && responseText != null) {
+                    console.log(responseText);
                     window.location.href = responseText;
                 }
             })

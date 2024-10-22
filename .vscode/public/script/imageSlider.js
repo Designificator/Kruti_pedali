@@ -1,15 +1,32 @@
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
 class imageSlider {
     slider;
     content;
     currentId;
     lastId;
     constructor(images) {
-        console.log("new slider");
         this.slider = document.getElementById('slider');
-        this.currentId = 0;
-        this.lastId = images.length - 1;
         this.content = [];
-        this.init(images);
+        if (!isMobile) {
+            console.log("new slider");
+            this.currentId = 0;
+            this.lastId = images.length - 1;
+            this.init(images);
+        }
+        else {
+            console.log("new mobile slider");
+            for (let i = 0; i < images.length; i++) {
+                let image = document.createElement('img');
+                image.src = '../img/' + images[i];
+                image.id = 'slider-img-item' + i.toString();
+                image.className = 'slider-img-item';
+                this.content.push(image);
+                let imageContainer = document.createElement('div');
+                imageContainer.className = 'slider-img';
+                imageContainer.insertAdjacentElement('beforeend', image);
+                this.slider.insertAdjacentElement('beforeend', imageContainer);
+            }
+        }
     }
     init(images) {
         for (let i = 0; i < images.length; i++) {
@@ -74,3 +91,4 @@ class imageSlider {
         });
     }
 }
+

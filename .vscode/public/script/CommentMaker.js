@@ -42,7 +42,7 @@ class Comment {
         newCommentName.id = "comment-item-name";
         const newCommentItemAva = document.createElement('div');
         newCommentItemAva.className = "comment-item-avatar";
-        newCommentItemAva.innerHTML = '<img src="img/0lslz48qa80x7xarnt4ivlvtxnivvpmu.png" width="70vh" height="70vh">'
+        newCommentItemAva.innerHTML = '<img src="img/0lslz48qa80x7xarnt4ivlvtxnivvpmu.png" class="comment-item-avatar-img">'
         const newCommentText = document.createElement('div');
         newCommentText.innerText = commentText;
         newCommentText.className = "comment-item-text";
@@ -174,7 +174,7 @@ function SendCommentToAPI(username, text, rate) {
         "text": text,
         "rate": rate
     }
-    fetch('http://localhost:3002/api/comments', {
+    fetch('/api/comments', {
         method: 'post',
         headers: {
             "Content-type": "application/json; charset=utf-8"

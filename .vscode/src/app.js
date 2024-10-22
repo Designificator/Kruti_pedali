@@ -3,8 +3,10 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const pool = require('./config/db.js');
 const cors = require('cors');
+const fileUpload = require('express-fileupload');
 require('dotenv').config();
 
+const localhost = process.env.SERVER_IP + ':' + process.env.SERVER_PORT.toString();
 const app = express();
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -13,6 +15,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
+app.use(fileUpload());
 const publicHTMLPath = path.join(__dirname, '../public/html');
 const publicDirPath = path.join(__dirname, '../public/');
 const session = require('express-session');
@@ -36,7 +39,7 @@ app.use(session({
     authorized: false
 }));
 
-const PORT = 3002;
+const PORT = process.env.SERVER_PORT;
 app.listen(PORT, (error) => {
     if (error) return console.log(`Error: ${error}`);
     else console.log(`Server running on port ${PORT}`);
@@ -116,7 +119,7 @@ app.use((err, req, res, next) => {
 
 app.get('/', (request, response) => {
     console.log(`URL: ${request.url}`);
-    response.redirect('http://localhost:3002/Main');
+    response.redirect('http://'+ localhost + '/Main');
 });
 
 app.use(express.static(publicDirPath));

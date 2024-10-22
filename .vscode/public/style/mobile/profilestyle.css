@@ -1,23 +1,21 @@
-body {
+body, html {
     margin: 0;
     width: 100%;
     height: 100%;
     font-family: "Inter", sans-serif;
-    background-image: url(../img/profile_background.png);
+    background-image: url(../../img/profile_background.png);
     background-size: cover;
+    background-repeat: no-repeat;
 }
 .container {
     margin-left: 20px;
 }
 
-.header {
-}
-
 .hat {
     background-color: #426151;
     background-size: cover;
-    height: 101px;
-    padding-top: 7px;
+    height: 5vh;
+    padding-top: 10px;
 }
 
 .headerline {
@@ -33,8 +31,8 @@ body {
     color: #E3DED1;
     text-decoration: underline;
     font-weight: 600;
-    font-size: 20px;
-    margin-right: 65px;
+    font-size: 34px;
+    margin-right: 5vw;
 }
 
     .opt-item:hover {
@@ -43,24 +41,24 @@ body {
 
 .login-button {
     color: #C3D1F4;
-    font-size: 20px;
+    font-size: 32px;
     font-weight: 700;
-    padding: 8px 37px 8px 37px;
+    padding: 10px 28px 10px 28px;
     background-color: #426151;
     border-radius: 10px;
-    border: solid 2px #9FB598;
-    margin-right: 65px;
+    border-radius: 15px;
+    margin-right: 5vw;
     text-decoration: none;
 }
 
 section {
-    padding-top: 20px;
+    padding-top: 3vh;
     display: flex;
 }
 
 .section-container {
-    width: 740px;
-    height: 600px;
+    width: 85vw;
+    height: 55vh;
     margin: auto;
     background-color: #EFF0EB;
     border-radius: 28px;
@@ -70,7 +68,7 @@ section {
 
 .title {
     color: #587364;
-    font-size: 26px;
+    font-size: 32px;
     font-weight: 700;
     padding: 36px 0 42px 24px;
     border-bottom: 2px solid #426151;
@@ -91,23 +89,23 @@ section {
 .data-column{
     display: flex;
     flex-direction: column;
-    margin-right: 70px;
+    margin-right: 5vw;
 }
 .data-row{
     display: flex;
     flex-direction: row;
-    margin-bottom: 30px;
+    margin-bottom: 3vh;
 }
 .data-row-item {
     display: flex;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 700;
     color: #587364;
     align-self: baseline;
 }
 .data-row-item-big {
     color: #587364;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 700;
     margin-bottom: -5px;
 }
@@ -155,38 +153,38 @@ section {
         text-decoration: underline;
     }
 .data-input {
-    margin-right: 10px;
-    width: 180px;
-    height: 25px;
+    margin-right: 2vw;
+    width: 14vw;
+    height: 2vh;
     background-color: #DBE6D8;
-    border-radius: 5px;
+    border-radius: 1vw;
     border: 1px solid #426151;
     color: #426151;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 400;
     font-family: inherit;
     padding-left: 10px;
 }
 .confirm-button {
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 2vh;
+    height: 2vh;
     border: 0;
-    background-image: url('../img/checkbox-checked-svgrepo-com.svg');
+    background-image: url('../../img/checkbox-checked-svgrepo-com.svg');
     background-size: cover;
 }
 .errmessage{
     margin: auto;
     color: #c90202;
-    font-size: 16px;
-    padding-top: 10px;
+    font-size: 20px;
+    padding-top: 2vh;
 }
 .exit-button {
-    font-size: 23px;
+    font-size: 38px;
     font-weight: 400;
     border: 2px solid #426151;
-    border-radius: 15px;
-    padding: 21px 61px 20px 61px;
+    border-radius: 3vw;
+    padding: 2vh 8vw 2vh 8vw;
     background: none;
     margin: auto;
     color: #426151;

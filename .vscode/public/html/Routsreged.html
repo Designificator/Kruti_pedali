@@ -3,7 +3,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../style/routstyles.css" type="text/css">
+    <link rel="stylesheet" href="../style/routstyles.css" type="text/css" media="all and (not handheld), screen">
+    <link rel="stylesheet" href="../style/mobile/routstyles.css" type="text/css" media="handheld, only screen and (max-device-width:480px)" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -15,16 +16,16 @@
 <body>
     <header>
         <div class="hat">
-                <div class="headerline">
-                    <div class="logo">
-                        <img src="../img/icon.svg">
-                    </div>
-                    <div class="options">
-                        <a class="opt-item" href="Mainreged">ГЛАВНАЯ</a>
-                        <a class="opt-item" href="Routsreged" style="color: #C3D1F4;">МАРШРУТЫ</a>
-                        <a class="login-button" href="profile">Личный кабинет</a>
-                    </div>
+            <div class="headerline">
+                <div class="logo">
+                    <img src="../img/icon.svg">
                 </div>
+                <div class="options">
+                    <a class="opt-item" href="Mainreged">ГЛАВНАЯ</a>
+                    <a class="opt-item" href="Routsreged" style="color: #C3D1F4;">МАРШРУТЫ</a>
+                    <a class="login-button" href="profile">Личный кабинет</a>
+                </div>
+            </div>
         </div>
     </header>
     <section>
@@ -40,43 +41,43 @@
             <div class="map" id="map">
             </div>
             <!--<div class="description">
-        <div class="description-holder">
-            <div class="title-holder">
-                <div class="title-bg"></div>
-                <div class="title-text">
-                <h1 id="rout-label"></h1>
-                <h3 id="rout-address"></h3></div>
-            </div>
-            <div class="description-main">
-            <div class="first-column">
-                <h2>Поблизости:</h2>
-                <div class="description-options" id="description-options">
-                    <div class="description-item">
-    <div class="description-item-icon"><img src="../img/torturetool.svg"></div>
-    <div class="description-item-body">
-        <div class="description-item-content">
+                <div class="description-holder">
+                    <div class="title-holder">
+                        <div class="title-bg"></div>
+                        <div class="title-text">
+                        <h1 id="rout-label"></h1>
+                        <h3 id="rout-address"></h3></div>
+                    </div>
+                    <div class="description-main">
+                    <div class="first-column">
+                        <h2>Поблизости:</h2>
+                        <div class="description-options" id="description-options">
+                            <div class="description-item">
+            <div class="description-item-icon"><img src="../img/torturetool.svg"></div>
+            <div class="description-item-body">
+                <div class="description-item-content">
 
-            <h3 id="description-item-text">Ремонт велосипедов "Починка"</h3><h3 id="description-item-rate">4.5</h3><img src="../img/greenstar.svg" style="vertical-align: bottom">
-        </div>
-        <div class="show-map-button">Показать на карте</div>
-    </div>
-    <div class="description-item-picture"><img src="../img/rout_description_pic.svg"></div>
-    </div>
+                    <h3 id="description-item-text">Ремонт велосипедов "Починка"</h3><h3 id="description-item-rate">4.5</h3><img src="../img/greenstar.svg" style="vertical-align: bottom">
                 </div>
+                <div class="show-map-button">Показать на карте</div>
             </div>
-            <div class="sec-column">
-                <div class="pic-number">4</div>
-                <img src="../img/anothercycle.png">
-                <div class="bottom-pannel">
-                    <div class="make-rout-button"><h3>Построить маршрут</h3></div>
-                    <div class="save-button">
-                        <img src="../img/savebutton.svg"><div>
-                            <div class="save-label"></div>
+            <div class="description-item-picture"><img src="../img/rout_description_pic.svg"></div>
+            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-    </div>-->
+                    <div class="sec-column">
+                        <div class="pic-number">4</div>
+                        <img src="../img/anothercycle.png">
+                        <div class="bottom-pannel">
+                            <div class="make-rout-button"><h3>Построить маршрут</h3></div>
+                            <div class="save-button">
+                                <img src="../img/savebutton.svg"><div>
+                                    <div class="save-label"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>-->
         </div>
     </section>
     <script src="../script/imageSlider.js"></script>
@@ -96,39 +97,62 @@
         mapBtnArray[4] = mapBtnService;
         mapBtnArray[5] = mapBtnFood;
 
+        async function scrollToYFor(endY, time) {
+            const start = performance.now()
+            const startY = window.scrollY
+            const y = (endY - startY)
+            while (performance.now() < start + time) {
+                const progress = (performance.now() - start) / time
+                window.scrollTo(0, startY + y * progress)
+                await new Promise(requestAnimationFrame)
+            }
+            window.scrollTo(0, endY)
+        }
         function initDescription(map_ref) {
             var description = document.getElementById('description');
+            if (isMobile) {
+                let map = document.getElementById('map');
+                map.style.height = '40vh';
+            }
             if (description == null) {
                 description = document.createElement('div');
                 var container = document.getElementById('container');
                 description.innerHTML = `<div class="description" id="description">
 <div class="description-holder">
-    <div class="title-holder">
-        <div class="title-bg"></div>
-        <div class="title-text-holder">
-        <div class="title-text">
-        <h1 id="rout-label"></h1>
-        <h3 id="rout-address"></h3></div></div>
-    </div>
-    <div class="description-main">
-    <div class="first-column">
-        <h2>Поблизости:</h2>
-        <div class="description-options" id="description-options">
-                        </div>
+        <div class="title-holder">
+            <div class="title-bg"></div>
+            <div class="title-text-holder">
+            <div class="title-text">
+            <h1 id="rout-label"></h1>
+            <h3 id="rout-address"></h3></div></div>
         </div>
-        <div class="sec-column">
-            <div class="slider" id="slider"></div>
-            <div class="bottom-pannel">
-                <div class="make-rout-button" id="make-route-button"><a href="${map_ref}" id="make-route-button-href" style="color: #EFF0EB"><h3>Открыть маршрут</h3></a></div>
+        <div class="description-main">
+        <div class="first-column">
+            <h2>Поблизости:</h2>
+            <div class="description-options" id="description-options">
+                            </div>
             </div>
-        </div>
+            <div class="sec-column" id="sec-column">
+                <div class="slider" id="slider"></div>
+                <div class="bottom-pannel">
+                    <div class="make-rout-button" id="make-route-button"><a href="${map_ref}" id="make-route-button-href" style="color: #EFF0EB">Открыть маршрут</a></div>
+                </div>
+            </div>
 </div>`;
                 container.insertAdjacentElement('beforeend', description);
             }
             else {
                 const openRouteHref = document.getElementById('make-route-button-href');
+                const prevSlider = document.getElementById('slider');
+                const newSlider = document.createElement('div');
+                const sliderContainer = document.getElementById('sec-column');
+                sliderContainer.removeChild(prevSlider);
+                newSlider.className = 'slider';
+                newSlider.id = 'slider';
+                sliderContainer.insertAdjacentElement('afterbegin', newSlider);
                 openRouteHref.href = map_ref;
             }
+            scrollToYFor(1000, 500);
         }
         var id_key = 1;
         ymaps.ready(function init() {
@@ -146,11 +170,11 @@
                 descriptionItem.innerHTML = `<div class="description-item">
 <div class="description-item-icon"><img src="../img/${icon}.svg"></div>
 <div class="description-item-body">
-    <div class="description-item-content">
+        <div class="description-item-content">
 
-        <h3 id="description-item-text">${name}</h3>${finalRate}
-    </div>
-    <button class="show-map-button" id=${id}>Показать на карте</button>
+            <h3 id="description-item-text">${name}</h3>${finalRate}
+        </div>
+        <button class="show-map-button" id=${id}>Показать на карте</button>
 </div>
 <div class="description-item-picture" style="background-image: url('../img/${img}')"></div>
 </div>`;
@@ -159,6 +183,7 @@
                 const showMapBtn = document.getElementById(id);
                 showMapBtn.addEventListener('click', function showMap() {
                     routeMap.setCenter(point.geometry.getCoordinates(), 20, { checkZoomRange: true });
+                    scrollToYFor(250, 500);
                 });
             }
 
@@ -221,7 +246,7 @@
                         iconCaption: "WoodProkat"
                     }
                 }),
-                
+
                 route_Channel = new ymaps.multiRouter.MultiRoute({
                     referencePoints: [
                         [47.204157091237036, 39.73439906404796],
@@ -241,7 +266,7 @@
                     boundsAutoApply: true,
                     wayPointVisible: false,
                     pinVisible: false,
-                    
+
                     routeActiveStrokeWidth: 5,
                     routeActiveStrokeStyle: 'solid',
                     routeActiveStrokeColor: "#ca10e5",
@@ -315,31 +340,31 @@
                         iconCaption: "Смотровая площадка"
                     }
                 }),
-                point_Parkcheckpoint1 = new ymaps.GeoObject({
+                point_Uzb = new ymaps.GeoObject({
                     geometry: {
                         type: "Point",
-                        coordinates: [47.293709310998494, 39.79444959677788]
+                        coordinates: [47.298621, 39.759330]
                     },
                     properties: {
-                        iconCaption: "Точка интереса"
+                        iconCaption: "\"Узбекистан\""
                     }
                 }),
-                point_Parkcheckpoint2 = new ymaps.GeoObject({
+                point_Chaikhana = new ymaps.GeoObject({
                     geometry: {
                         type: "Point",
-                        coordinates: [47.294015880313175, 39.7674558452519]
+                        coordinates: [47.298742, 39.768463]
                     },
                     properties: {
-                        iconCaption: "Точка интереса"
+                        iconCaption: "Чайхана"
                     }
                 }),
-                point_Parkcheckpoint3 = new ymaps.GeoObject({
+                point_ParkShop = new ymaps.GeoObject({
                     geometry: {
                         type: "Point",
-                        coordinates: [47.2925925080095, 39.752682237997846]
+                        coordinates: [47.284941, 39.799966]
                     },
                     properties: {
-                        iconCaption: "Точка интереса"
+                        iconCaption: "Toysbag"
                     }
                 }),
 
@@ -430,13 +455,13 @@
                         iconCaption: "Фонтан"
                     }
                 }),
-                point_WC = new ymaps.GeoObject({
+                point_repaire = new ymaps.GeoObject({
                     geometry: {
                         type: "Point",
-                        coordinates: [47.213402234511726, 39.738465386279344]
+                        coordinates: [47.219745, 39.721820]
                     },
                     properties: {
-                        iconCaption: "W/C"
+                        iconCaption: "Велопрайм"
                     }
                 }),
                 point_ropesPark = new ymaps.GeoObject({
@@ -446,6 +471,42 @@
                     },
                     properties: {
                         iconCaption: "Веревочный парк"
+                    }
+                }),
+                point_nairi = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.212090, 39.729903]
+                    },
+                    properties: {
+                        iconCaption: "Наири"
+                    }
+                }),
+                point_tower = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.212501, 39.729122]
+                    },
+                    properties: {
+                        iconCaption: "Башня"
+                    }
+                }),
+                point_RiverDon = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.211862, 39.734026]
+                    },
+                    properties: {
+                        iconCaption: "RiverDonPark"
+                    }
+                }),
+                point_Smirnof = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [47.211026, 39.725475]
+                    },
+                    properties: {
+                        iconCaption: "Смирнов"
                     }
                 }),
                 point_upsideHouse = new ymaps.GeoObject({
@@ -483,105 +544,61 @@
                     routeActiveStrokeStyle: 'solid',
                     routeActiveStrokeColor: "#1e98ffe6",
                 }),
-            point_ShepkinRestzone = new ymaps.GeoObject({
-                geometry: {
-                    type: "Point",
-                    coordinates: [47.35107638638679, 39.75212299741883]
-                },
-                properties: {
-                    iconCaption: "Зона отдыха"
-                }
-            }),
-                point_Shepkincheckpoint1 = new ymaps.GeoObject({
+
+                point_cafecubes = new ymaps.GeoObject({
                     geometry: {
                         type: "Point",
-                        coordinates: [47.34214740742215, 39.740417837277526]
+                        coordinates: [47.339037, 39.790310]
                     },
                     properties: {
-                        iconCaption: "Точка интереса"
+                        iconCaption: "Кубики"
                     }
                 }),
-                point_Shepkincheckpoint2 = new ymaps.GeoObject({
+                point_Shepkinwood = new ymaps.GeoObject({
                     geometry: {
                         type: "Point",
-                        coordinates: [47.34989153402937, 39.746554731503515]
+                        coordinates: [47.339900, 39.736919]
                     },
                     properties: {
-                        iconCaption: "Точка интереса"
+                        iconCaption: "Щепкинский лес"
                     }
-                }),
-                point_Shepkincheckpoint3 = new ymaps.GeoObject({
-                    geometry: {
-                        type: "Point",
-                        coordinates: [47.354674528835986, 39.75312077917197]
-                    },
-                    properties: {
-                        iconCaption: "Точка интереса"
-                    }
-                }),
-
-                collection_checkpoints = new ymaps.GeoObjectCollection({}, {}),
-                collection_shops = new ymaps.GeoObjectCollection({}, {}),
-                collection_share = new ymaps.GeoObjectCollection({}, {}),
-                collection_food = new ymaps.GeoObjectCollection({}, {}),
-                collection_service = new ymaps.GeoObjectCollection({}, {}),
-                collection_routes = new ymaps.GeoObjectCollection({}, {});
-
-            collection_checkpoints.add(point_Channelrestzone)
-                .add(point_LeftCoastfountain)
-                .add(point_Parkcheckpoint1)
-                .add(point_Parkcheckpoint2)
-                .add(point_Parkcheckpoint3)
-                .add(point_Pines)
-                .add(point_ShepkinRestzone)
-                .add(point_ropesPark)
-                .add(point_RoseAvfountain)
-                .add(point_Shepkincheckpoint1)
-                .add(point_Shepkincheckpoint2)
-                .add(point_Shepkincheckpoint3)
-                .add(point_soldiersVictoryMemorial)
-                .add(point_Lelush)
-                .add(point_upsideHouse)
-                .add(point_sportsground)
-                .add(point_WC)
-                .add(point_FriendAv)
-                .add(point_spectatespot);
-            collection_food.add(point_Boomcoffee);
-            collection_routes.add(route_LeftCoast)
-                .add(route_Shepkin)
-                .add(route_Channel)
-                .add(route_Park)
-                .add(route_RoseAv);
-
-            route_Channel.events.add('click', function route_Channel_event() {
+                });
+            function route_Channel_event() {
                 routeMap.setCenter(route_Channel.getWayPoints().get(1).geometry.getCoordinates(), 15, { checkZoomRange: true });
-                    initDescription('https://yandex.ru/maps/39/rostov-na-donu/?from=api-maps&ll=39.743744%2C47.199123&mode=routes&origin=jsapi_2_1_79&pt=39.73808853591305%2C47.198378519798844~39.733251171954784%2C47.20386262350095~39.732210474857%2C47.203902838209025~39.732028084644%2C47.20414412545804~39.73751722539156%2C47.212730585427465~39.738465386279344%2C47.213402234511726~39.731341%2C47.211464~39.738480138428876%2C47.2136571853762~39.731082605966044%2C47.21242673911266~39.728769%2C47.225101&rtext=47.204157%2C39.734399~47.203755%2C39.732918~47.203616%2C39.732854~47.203382%2C39.732071~47.202483%2C39.730880~47.194842%2C39.734322~47.183550%2C39.746961~47.185540%2C39.745416~47.204195%2C39.734539&rtt=bc&ruri=~~~~~~~~&z=15');
+                initDescription('https://yandex.ru/maps/39/rostov-na-donu/?from=api-maps&ll=39.743744%2C47.199123&mode=routes&origin=jsapi_2_1_79&pt=39.73808853591305%2C47.198378519798844~39.733251171954784%2C47.20386262350095~39.732210474857%2C47.203902838209025~39.732028084644%2C47.20414412545804~39.73751722539156%2C47.212730585427465~39.738465386279344%2C47.213402234511726~39.731341%2C47.211464~39.738480138428876%2C47.2136571853762~39.731082605966044%2C47.21242673911266~39.728769%2C47.225101&rtext=47.204157%2C39.734399~47.203755%2C39.732918~47.203616%2C39.732854~47.203382%2C39.732071~47.202483%2C39.730880~47.194842%2C39.734322~47.183550%2C39.746961~47.185540%2C39.745416~47.204195%2C39.734539&rtt=bc&ruri=~~~~~~~~&z=15');
+                routeMap.container.fitToViewport();
                 var title = document.getElementById('rout-label');
                 title.innerText = "МАРШРУТ \"ГРЕБНОЙ КАНАЛ\"";
                 var description = document.getElementById('description-options');
-                    description.innerHTML = '<div class="description-options" id="description-options"></div>';
-                    makeDescriptionsItem('cafeicon', 'Boom кофе', '', 'icons/boom_coffee.jpg', point_Boomcoffee);
-                    makeDescriptionsItem('checkpoint', 'Беседка', '', 'icons/channel_4.jpg', point_Channelrestzone);
-                    makeDescriptionsItem('checkpoint', 'Велопрокат', '', 'icons/channel_share.jpg', point_Channelsharing);
-                    let images = ["channel_1.jpg", "channel_2.jpg", "channel_3.jpg", "channel_5.jpg"];
-                    var slider = new imageSlider(images);
-                
-            });
-            route_Park.events.add('click', function route_Park_event() {
+                description.innerHTML = '<div class="description-options" id="description-options"></div>';
+                makeDescriptionsItem('cafeicon', 'Boom кофе', '', 'icons/boom_coffee.jpg', point_Boomcoffee);
+                makeDescriptionsItem('checkpoint', 'Беседка', '', 'icons/channel_4.jpg', point_Channelrestzone);
+                makeDescriptionsItem('checkpoint', 'Велопрокат', '', 'icons/channel_share.jpg', point_Channelsharing);
+                let images = ["channel_1.jpg", "channel_2.jpg", "channel_3.jpg", "channel_5.jpg"];
+                var slider = new imageSlider(images);
+
+            }
+            function route_Park_event() {
                 routeMap.setCenter(route_Park.getWayPoints().get(1).geometry.getCoordinates(), 15, { checkZoomRange: true });
                 initDescription('https://yandex.ru/maps/39/rostov-na-donu/?from=api-maps&ll=39.762170%2C47.293790&mode=routes&origin=jsapi_2_1_79&pt=39.7674558452519%2C47.294015880313175~39.752682237997846%2C47.2925925080095~39.748309%2C47.292564~39.7910673312101%2C47.292395422477604~39.79381%2C47.294208~39.79444959677788%2C47.293709310998494~39.737218%2C47.339918~39.728769%2C47.225101~39.738480138428876%2C47.2136571853762~39.738465386279344%2C47.213402234511726&rtext=47.294156%2C39.794554~47.293623%2C39.794593~47.292762%2C39.793220~47.292572%2C39.792168~47.297594%2C39.771204~47.294499%2C39.770732~47.292747%2C39.757450~47.292630%2C39.748481&rtt=bc&ruri=~~~~~~~&z=14');
+                routeMap.container.fitToViewport();
                 var title = document.getElementById('rout-label');
                 title.innerText = "МАРШРУТ \"ЛЕСОПАРК\"";
                 var description = document.getElementById('description-options');
                 description.innerHTML = '<div class="description-options" id="description-options"></div>';
-                makeDescriptionsItem('checkpoint', 'Точка интереса', '', '@', point_Parkcheckpoint1);
-                makeDescriptionsItem('checkpoint', 'Смотровая площадка', '', '@', point_spectatespot);
-                makeDescriptionsItem('cafeicon', 'Чайхана', '4.7', 'icons/chaikhana.jpg', point_Parkcheckpoint2);
-                makeDescriptionsItem('cafeicon', 'Узбекистан', '4.3', 'icons/uzb.jpg', point_Parkcheckpoint3);
-            });
-            route_RoseAv.events.add('click', function route_RoseAv_event() {
+                makeDescriptionsItem('checkpoint', 'Смотровая площадка', '', 'icons/sopka.jpg', point_spectatespot);
+                makeDescriptionsItem('checkpoint', 'Лелюшенковский лесопарк', '', 'icons/lelush.jpg', point_Lelush);
+                makeDescriptionsItem('checkpoint', 'Сосновый бор', '', 'icons/pines.jpg', point_Pines);
+                makeDescriptionsItem('torturetool', 'Toysbag', '', '', point_ParkShop);
+                makeDescriptionsItem('cafeicon', 'Чайхана', '4.7', 'icons/chaikhana.jpg', point_Chaikhana);
+                makeDescriptionsItem('cafeicon', 'Узбекистан', '4.3', 'icons/uzb.jpg', point_Uzb);
+                let images = ['lelush_1.jpg', 'lelush_2.jpg', 'lelush_3.jpg'];
+                var slider = new imageSlider(images);
+            }
+            function route_RoseAv_event() {
                 routeMap.setCenter(route_RoseAv.getWayPoints().get(1).geometry.getCoordinates(), 15, { checkZoomRange: true });
                 initDescription('https://yandex.ru/maps/39/rostov-na-donu/?from=api-maps&ll=39.636850%2C47.205963&mode=routes&origin=jsapi_2_1_79&pt=39.633436116225816%2C47.2057645616428~39.633445503957454%2C47.204942468985585~39.63335699105956%2C47.20771121130969~39.630984%2C47.205809~39.731082605966044%2C47.21242673911266~39.731341%2C47.211464~39.732028084644%2C47.20414412545804~39.732210474857%2C47.203902838209025~39.728769%2C47.225101~39.733251171954784%2C47.20386262350095&rtext=47.205773%2C39.631046~47.205554%2C39.631143~47.205576%2C39.632881~47.203836%2C39.632795~47.203960%2C39.634232~47.207959%2C39.633632~47.208142%2C39.641367~47.205620%2C39.642655~47.203785%2C39.631969~47.205605%2C39.631926~47.205883%2C39.631947~47.205831%2C39.631124&rtt=bc&ruri=~~~~~~~~~~~&z=17');
+                routeMap.container.fitToViewport();
                 var title = document.getElementById('rout-label');
                 title.innerText = "МАРШРУТ \"АЛЛЕЯ РОЗ\"";
                 var description = document.getElementById('description-options');
@@ -592,38 +609,67 @@
                 makeDescriptionsItem('cafeicon', 'SanRemo', '4.5', 'icons/sanremo.jpg', point_Frenta);
                 let images = ["roseav_1.jpg", "roseav_2.jpg", "roseav_3.jpg", "roseav_4.jpg", "roseav_5.jpg"];
                 var slider = new imageSlider(images);
-                
-            });
-            route_LeftCoast.events.add('click', function route_LeftCoast_event() {
+
+            }
+            function route_LeftCoast_event() {
                 routeMap.setCenter(route_LeftCoast.getWayPoints().get(1).geometry.getCoordinates(), 15, { checkZoomRange: true });
                 initDescription('https://yandex.ru/maps/39/rostov-na-donu/?from=api-maps&ll=39.733091%2C47.209585&mode=routes&origin=jsapi_2_1_79&pt=39.731341%2C47.211464~39.731082605966044%2C47.21242673911266~39.73751722539156%2C47.212730585427465~39.738465386279344%2C47.213402234511726~39.738480138428876%2C47.2136571853762~39.732028084644%2C47.20414412545804~39.732210474857%2C47.203902838209025~39.733251171954784%2C47.20386262350095~39.73808853591305%2C47.198378519798844~39.728769%2C47.225101&rtext=47.211459%2C39.731318~47.212041%2C39.726169~47.212275%2C39.727027~47.212736%2C39.730567~47.213328%2C39.736715~47.213489%2C39.738689~47.211873%2C39.738882~47.212630%2C39.739063~47.211372%2C39.733742~47.211577%2C39.732712&rtt=bc&ruri=~~~~~~~~~&z=16');
+                routeMap.container.fitToViewport();
                 var title = document.getElementById('rout-label');
                 title.innerText = "МАРШРУТ \"ЛЕВОБЕРЕЖНЫЙ ПАРК\"";
                 var description = document.getElementById('description-options');
                 description.innerHTML = '<div class="description-options" id="description-options"></div>';
                 makeDescriptionsItem('checkpoint', 'Фонтан', '', 'icons/leftcoast_fountain.jpg', point_LeftCoastfountain);
                 makeDescriptionsItem('checkpoint', 'Перевернутый дом', '', 'icons/leftcoast_house.jpg', point_upsideHouse);
-                makeDescriptionsItem('cafeicon', 'Наири', '4.1', 'icons/nairi.jpg', point_LeftCoastfountain);
-                makeDescriptionsItem('cafeicon', 'Башня', '4.3', 'icons/tower.jpg', point_LeftCoastfountain);
-                makeDescriptionsItem('cafeicon', 'Смирнофф', '4.2', 'icons/smirnoff.jpg', point_LeftCoastfountain);
-                makeDescriptionsItem('cafeicon', 'RiverDonPark', '4.7', 'icons/riverdonpark.jpg', point_LeftCoastfountain);
+                makeDescriptionsItem('torturetool', 'Велопрайм', '5', 'icon/repaire.jpg', point_repaire);
+                makeDescriptionsItem('cafeicon', 'Наири', '4.1', 'icons/nairi.jpg', point_nairi);
+                makeDescriptionsItem('cafeicon', 'Башня', '4.3', 'icons/tower.jpg', point_tower);
+                makeDescriptionsItem('cafeicon', 'Смирнофф', '4.2', 'icons/smirnoff.jpg', point_Smirnof);
+                makeDescriptionsItem('cafeicon', 'RiverDonPark', '4.7', 'icons/riverdonpark.jpg', point_RiverDon);
                 let images = ['leftcoast_1.jpg', 'leftcoast_2.jpg', 'leftcoast_3.jpg', 'leftcoast_4.jpg', 'leftcoast_5.jpg'];
                 var slider = new imageSlider(images);
-            });
-            route_Shepkin.events.add('click', function route_Shepkin_event() {
+            }
+            function route_Shepkin_event() {
                 routeMap.setCenter(route_Shepkin.getWayPoints().get(1).geometry.getCoordinates(), 15, { checkZoomRange: true });
                 initDescription('https://yandex.ru/maps/?from=api-maps&ll=39.756317%2C47.348097&mode=routes&origin=jsapi_2_1_79&pt=39.737218%2C47.339918~39.7674558452519%2C47.294015880313175~39.752682237997846%2C47.2925925080095~39.748309%2C47.292564~39.79381%2C47.294208~39.79444959677788%2C47.293709310998494~39.7910673312101%2C47.292395422477604~39.728769%2C47.225101~39.738480138428876%2C47.2136571853762~39.738465386279344%2C47.213402234511726&rtext=47.341243%2C39.736253~47.340018%2C39.737541~47.343810%2C39.742733~47.346464%2C39.743892~47.349877%2C39.744643~47.351802%2C39.751488~47.355681%2C39.753462~47.356701%2C39.749814~47.357430%2C39.740244~47.354813%2C39.730327~47.341476%2C39.736038&rtt=bc&ruri=~~~~~~~~~~&z=14');
+                routeMap.container.fitToViewport();
                 var title = document.getElementById('rout-label');
                 title.innerText = "МАРШРУТ \"ЩЕПКИНСКИЙ ЛЕС\"";
                 var description = document.getElementById('description-options');
                 description.innerHTML = '<div class="description-options" id="description-options"></div>';
-                makeDescriptionsItem('checkpoint', 'Точка интереса', '', '@', point_Shepkincheckpoint1);
-                makeDescriptionsItem('checkpoint', 'Зона отдыха', '', '@', point_ShepkinRestzone);
-                let images = ['Shepkin_1.jpg', 'Shepkin_2.jpg', 'Shepkin_3.jpg'];
-                var slider = new imagesSlider(images);
-            });
+                makeDescriptionsItem('checkpoint', 'Щепкинский лес', '', 'icons/Shepkin_4.jpg', point_Shepkinwood);
+                makeDescriptionsItem('checkpoint', 'WoodProkat', '5', 'icons/woodprokat.jpg', point_WoodProkat);
+                makeDescriptionsItem('cafeicon', 'Кубики', '5', 'icons/cafecubes.jpg', point_cafecubes);
+                let images = ['Shepkin_2.jpg', 'Shepkin_3.jpg', 'Shepkin_4.jpg'];
+                var slider = new imageSlider(images);
+            }
+            route_Channel.events.add('click', route_Channel_event);
+            route_Park.events.add('click', route_Park_event);
+            route_RoseAv.events.add('click', route_RoseAv_event);
+            route_LeftCoast.events.add('click', route_LeftCoast_event);
+            route_Shepkin.events.add('click', route_Shepkin_event);
+
+            if (isMobile) {
+                const routeBtn = new Array(5);
+                const routeBtnContainer = document.createElement('div');
+                for (let i = 0; i < 5; i++) {
+                    routeBtn[i] = document.createElement('div');
+                    routeBtn[i].className = 'route-button';
+                    routeBtn[i].innerText = (i + 1).toString();
+                    routeBtnContainer.insertAdjacentElement('beforeend', routeBtn[i]);
+                }
+                routeBtnContainer.className = 'route-button-container';
+                routeBtn[0].addEventListener('click', route_Channel_event);
+                routeBtn[1].addEventListener('click', route_LeftCoast_event);
+                routeBtn[2].addEventListener('click', route_Park_event);
+                routeBtn[3].addEventListener('click', route_RoseAv_event);
+                routeBtn[4].addEventListener('click', route_Shepkin_event);
+                var container = document.getElementById('container');
+                container.insertAdjacentElement('beforeend', routeBtnContainer);
+            }
 
             routeMap.geoObjects.add(point_Bikeshare)
+                .add(point_repaire)
                 .add(point_Frenta)
                 .add(point_FrentaC)
                 .add(point_Lelush)
@@ -634,9 +680,6 @@
                 .add(point_Channelsharing)
                 .add(point_FriendAv)
                 .add(point_LeftCoastfountain)
-                .add(point_Parkcheckpoint1)
-                .add(point_Parkcheckpoint2)
-                .add(point_Parkcheckpoint3)
                 .add(point_Channelrestzone)
                 .add(point_ropesPark)
                 .add(point_RoseAvfountain)
@@ -644,13 +687,20 @@
                 .add(point_spectatespot)
                 .add(point_sportsground)
                 .add(point_upsideHouse)
-                .add(point_WC)
+                .add(point_ParkShop)
                 .add(point_WoodProkat)
                 .add(route_LeftCoast)
                 .add(route_Shepkin)
                 .add(route_Channel)
                 .add(route_Park)
-                .add(route_RoseAv);
+                .add(route_RoseAv)
+                .add(point_Shepkinwood)
+                .add(point_Chaikhana)
+                .add(point_nairi)
+                .add(point_Smirnof)
+                .add(point_RiverDon)
+                .add(point_tower)
+                .add(point_cafecubes);
 
             function updateMapBtn() {
                 if (allSelected) {
@@ -667,16 +717,15 @@
                 point_Boomcoffee.options.set('visible', true);
                 point_Channelrestzone.options.set('visible', true);
                 point_LeftCoastfountain.options.set('visible', true);
-                point_Parkcheckpoint1.options.set('visible', true);
-                point_Parkcheckpoint2.options.set('visible', true);
-                point_Parkcheckpoint3.options.set('visible', true);
                 point_Pines.options.set('visible', true);
-                point_ShepkinRestzone.options.set('visible', true);
                 point_ropesPark.options.set('visible', true);
                 point_RoseAvfountain.options.set('visible', true);
-                point_Shepkincheckpoint1.options.set('visible', true);
-                point_Shepkincheckpoint2.options.set('visible', true);
-                point_Shepkincheckpoint3.options.set('visible', true);
+                point_tower.options.set('visible', true);
+                point_Chaikhana.options.set('visible', true);
+                point_cafecubes.options.set('visible', true);
+                point_nairi.options.set('visible', true);
+                point_Smirnof.options.set('visible', true);
+                point_RiverDon.options.set('visible', true);
                 point_soldiersVictoryMemorial.options.set('visible', true);
                 point_Lelush.options.set('visible', true);
                 point_upsideHouse.options.set('visible', true);
@@ -687,30 +736,33 @@
                 point_FrentaC.options.set('visible', true);
                 point_WoodProkat.options.set('visible', true);
                 point_Channelsharing.options.set('visible', true);
-                point_WC.options.set('visible', true);
                 point_FriendAv.options.set('visible', true);
                 route_RoseAv.options.set('visible', true);
                 route_Shepkin.options.set('visible', true);
                 route_LeftCoast.options.set('visible', true);
                 route_Channel.options.set('visible', true);
                 route_Park.options.set('visible', true);
+                point_ParkShop.options.set('visible', true);
+                point_Shepkinwood.options.set('visible', true);
             }
             function HideAll() {
+                point_repaire.options.set('visible', false);
                 point_Boomcoffee.options.set('visible', false);
                 point_Channelrestzone.options.set('visible', false);
-                point_WC.options.set('visible', false);
+                point_Bikeshare.options.set('visible', false);
                 point_FriendAv.options.set('visible', false);
                 point_LeftCoastfountain.options.set('visible', false);
-                point_Parkcheckpoint1.options.set('visible', false);
-                point_Parkcheckpoint2.options.set('visible', false);
-                point_Parkcheckpoint3.options.set('visible', false);
+                point_ParkShop.options.set('visible', false);
                 point_Pines.options.set('visible', false);
-                point_ShepkinRestzone.options.set('visible', false);
+                point_Shepkinwood.options.set('visible', false);
                 point_ropesPark.options.set('visible', false);
                 point_RoseAvfountain.options.set('visible', false);
-                point_Shepkincheckpoint1.options.set('visible', false);
-                point_Shepkincheckpoint2.options.set('visible', false);
-                point_Shepkincheckpoint3.options.set('visible', false);
+                point_cafecubes.options.set('visible', false);
+                point_Chaikhana.options.set('visible', false);
+                point_Smirnof.options.set('visible', false);
+                point_nairi.options.set('visible', false);
+                point_tower.options.set('visible', false);
+                point_RiverDon.options.set('visible', false);
                 point_soldiersVictoryMemorial.options.set('visible', false);
                 point_Lelush.options.set('visible', false);
                 point_upsideHouse.options.set('visible', false);
@@ -731,6 +783,12 @@
             function ShowFood() {
                 updateMapBtn();
                 mapBtnFood.style.color = "#C3D1F4";
+                point_tower.options.set('visible', true);
+                point_Chaikhana.options.set('visible', true);
+                point_cafecubes.options.set('visible', true);
+                point_nairi.options.set('visible', true);
+                point_Smirnof.options.set('visible', true);
+                point_RiverDon.options.set('visible', true);
                 point_Boomcoffee.options.set('visible', true);
                 allSelected = false;
 
@@ -785,13 +843,13 @@
             function ShowService() {
                 updateMapBtn();
                 mapBtnService.style.color = "#C3D1F4";
-
+                point_repaire.options.set('visible', true);
                 allSelected = false;
             }
             function ShowShops() {
                 updateMapBtn();
                 mapBtnShop.style.color = "#C3D1F4";
-
+                point_ParkShop.options.set('visible', true);
                 allSelected = false;
             }
 
@@ -802,7 +860,7 @@
             mapBtnService.addEventListener('click', ShowService);
             mapBtnShop.addEventListener('click', ShowShops);
         });
-        
+
     </script>
 </body>
 </html>
