@@ -6,7 +6,8 @@ const cors = require('cors');
 const fileUpload = require('express-fileupload');
 require('dotenv').config();
 
-const localhost = process.env.SERVER_IP + ':' + process.env.SERVER_PORT.toString();
+const localhost = process.env.SERVER_DOMAIN;
+
 const app = express();
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -119,7 +120,7 @@ app.use((err, req, res, next) => {
 
 app.get('/', (request, response) => {
     console.log(`URL: ${request.url}`);
-    response.redirect('http://'+ localhost + '/Main');
+    response.redirect('https://'+ localhost + '/Main');
 });
 
 app.use(express.static(publicDirPath));

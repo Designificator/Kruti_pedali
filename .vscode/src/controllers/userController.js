@@ -1,6 +1,7 @@
 const pool = require('../config/db');
 require('dotenv').config();
-const localhost = process.env.SERVER_IP + ':' + process.env.SERVER_PORT.toString();
+//const localhost = process.env.SERVER_IP + ':' + process.env.SERVER_PORT.toString();
+const localhost = process.env.SERVER_DOMAIN;
 
 exports.getUsers = async (req, res) => {
     const { email, password } = req.body;
@@ -19,7 +20,7 @@ exports.getUsers = async (req, res) => {
                 req.session.username = result.rows[0].name;
                 req.session.email = result.rows[0].email;
                 req.session.password = result.rows[0].password;
-                res.set('text').send('http://' + localhost + '/Mainreged');
+                res.set('text').send('https://' + localhost + '/Mainreged');
             } else {
                 console.log("User not found");
                 res.status(401).json({ error: 'Invalid credentials' });

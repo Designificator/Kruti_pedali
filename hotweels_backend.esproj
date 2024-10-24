@@ -33,7 +33,7 @@
     <None Include=".vscode\public\img\icon.svg" />
     <None Include=".vscode\public\html\Main.html" />
     <None Include=".vscode\public\img\maxresdefault.jpg" />
-    <None Include=".vscode\public\html\Regist.html" />
+    <None Include=".vscode\public\html\regist.html" />
     <None Include=".vscode\public\style\mobile\autostyle.css" />
     <None Include=".vscode\public\style\mobile\profilestyle.css" />
     <None Include=".vscode\public\style\mobile\registstyles.css" />

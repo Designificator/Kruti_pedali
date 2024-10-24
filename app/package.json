@@ -1,0 +1,31 @@
+{
+  "name": "hotweels_backend",
+  "version": "1.0.0",
+  "main": ".vscode/src/app.js",
+  "private": true,
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-fileupload": "^1.5.1",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.2.0",
+    "pg": "^8.12.0",
+    "winston": "^3.14.1"
+  },
+  "devDependencies": {
+    "eslint": "^9.9.0"
+  },
+  "scripts": {
+    "test": "test",
+    "start": "node .vscode/src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "hotweels"
+  },
+  "author": "Designificator",
+  "license": "ISC",
+  "description": ""
+}
