@@ -120,7 +120,7 @@ app.use((err, req, res, next) => {
 
 app.get('/', (request, response) => {
     console.log(`URL: ${request.url}`);
-    response.redirect('https://'+ localhost + '/Main');
+    response.redirect(localhost + '/Main');
 });
 
 app.use(express.static(publicDirPath));
