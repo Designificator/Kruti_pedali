@@ -47,19 +47,41 @@ exports.getSessionData = async (req, res) => {
 }
 
 exports.createUser = async (req, res, next) => {
-    const { name, email, password} = req.body;
+    const { name, email, password } = req.body;
+    let unique = true;
     try {
-        const result = await pool.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *', [name, email, password]);
-        res.status(201);
-        req.session.authorized = true;
-        req.session.username = name;
-        req.session.email = email;
-        req.session.password = password;
-        req.session.userid = result.rows[0].id;
-        res.set('text').send('http://' + localhost + '/Mainreged');
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-        next();
+        pool.query('SELECT * FROM users WHERE name = $1', [name], (err, result) => {
+            if (err) {
+                console.error("Error in SQL query:", err);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            if (result.rows != null && result.rows[0] != undefined) {
+                res.status(500).json({ error: "ѕользователь с таким именем уже есть" });
+                unique = false;
+                next();
+            }
+        });
+    }
+    catch (err) {
+                res.status(500).json({ error: err.message });
+                next();
+    }
+    if (unique) {
+        try {
+            const result = await pool.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *', [name, email, password]);
+            res.status(201);
+            req.session.authorized = true;
+            req.session.username = name;
+            req.session.email = email;
+            req.session.password = password;
+            req.session.userid = result.rows[0].id;
+            res.set('text').send('http://' + localhost + '/Mainreged');
+        } catch (err) {
+            if (unique) {
+                res.status(500).json({ error: err.message });
+                next();
+            }
+        }
     }
 };
 

@@ -59,7 +59,7 @@ section {
 }
 
 .section-container {
-    width: 740px;
+    min-width: 740px;
     height: 600px;
     margin: auto;
     background-color: #EFF0EB;
@@ -127,6 +127,7 @@ section {
 #data-password{
     border: 0px;
     background: none;
+    padding: 0;
 }
 #data-password:hover{
     text-decoration: underline;

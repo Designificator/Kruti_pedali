@@ -95,14 +95,14 @@
                     table.removeChild(error);
                 }, 3000);
             }
-
+            function show() {
+                userPassword.innerText = localStorage.getItem('password');
+            }
             current.getUserData(function (name, email, password) {
                 username.innerText = name;
                 userEmail.innerText = email;
                 localStorage.setItem('password', password);
-                function show() {
-                    userPassword.innerText = localStorage.getItem('password');
-                }
+                
                 userPassword.addEventListener('click', show);
             });
             current.getUserId(id => {
